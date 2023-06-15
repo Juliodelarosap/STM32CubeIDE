@@ -1,0 +1,94 @@
+18:42:19 **** Incremental Build of configuration Debug for project micro2023 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/main.c:25:
+../Core/Inc/max_matrix_stm32.h:7: warning: "data_Pin" redefined
+    7 | #define data_Pin GPIO_PIN_0
+      | 
+In file included from ../Core/Src/main.c:20:
+../Core/Inc/main.h:70: note: this is the location of the previous definition
+   70 | #define data_Pin GPIO_PIN_7
+      | 
+In file included from ../Core/Src/main.c:25:
+../Core/Inc/max_matrix_stm32.h:8: warning: "cs_Pin" redefined
+    8 | #define cs_Pin GPIO_PIN_1
+      | 
+In file included from ../Core/Src/main.c:20:
+../Core/Inc/main.h:68: note: this is the location of the previous definition
+   68 | #define cs_Pin GPIO_PIN_6
+      | 
+In file included from ../Core/Src/main.c:25:
+../Core/Inc/max_matrix_stm32.h:9: warning: "clock_Pin" redefined
+    9 | #define clock_Pin GPIO_PIN_2
+      | 
+In file included from ../Core/Src/main.c:20:
+../Core/Inc/main.h:66: note: this is the location of the previous definition
+   66 | #define clock_Pin GPIO_PIN_5
+      | 
+../Core/Src/main.c:63:18: error: unknown type name 'uint_t'; did you mean 'uint8_t'?
+   63 | void write_byte (uint_t byte)
+      |                  ^~~~~~
+      |                  uint8_t
+../Core/Src/main.c: In function 'write_max':
+../Core/Src/main.c:75:27: error: 'GPIO_Pin_6' undeclared (first use in this function); did you mean 'GPIO_PIN_6'?
+   75 |  HAL_GPIO_WritePin(GPIOA, GPIO_Pin_6, 0);
+      |                           ^~~~~~~~~~
+      |                           GPIO_PIN_6
+../Core/Src/main.c:75:27: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:81:6: error: conflicting types for 'max_init'
+   81 | void max_init(void)
+      |      ^~~~~~~~
+In file included from ../Core/Src/main.c:25:
+../Core/Inc/max_matrix_stm32.h:77:6: note: previous declaration of 'max_init' was here
+   77 | void max_init (uint8_t brightness);
+      |      ^~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:137:19: error: 'display' undeclared (first use in this function)
+  137 |     {write_max(i, display[j][i-1]);
+      |                   ^~~~~~~
+../Core/Src/main.c:197:15: error: invalid storage class for function 'MX_I2C1_Init'
+  197 |   static void MX_I2C1_Init(void)
+      |               ^~~~~~~~~~~~
+../Core/Src/main.c:245:15: error: invalid storage class for function 'MX_USART2_UART_Init'
+  245 |   static void MX_USART2_UART_Init(void)
+      |               ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:280:15: error: invalid storage class for function 'MX_GPIO_Init'
+  280 |   static void MX_GPIO_Init(void)
+      |               ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'Error_Handler':
+../Core/Src/main.c:345:3: error: expected declaration or statement at end of input
+  345 |   }
+      |   ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:345:3: error: expected declaration or statement at end of input
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:54:13: warning: 'MX_GPIO_Init' used but never defined
+   54 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:55:13: warning: 'MX_USART2_UART_Init' used but never defined
+   55 | static void MX_USART2_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:56:13: warning: 'MX_I2C1_Init' used but never defined
+   56 | static void MX_I2C1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:336:8: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  336 |   void Error_Handler(void)
+      |        ^~~~~~~~~~~~~
+../Core/Src/main.c:280:15: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  280 |   static void MX_GPIO_Init(void)
+      |               ^~~~~~~~~~~~
+../Core/Src/main.c:245:15: warning: 'MX_USART2_UART_Init' defined but not used [-Wunused-function]
+  245 |   static void MX_USART2_UART_Init(void)
+      |               ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:197:15: warning: 'MX_I2C1_Init' defined but not used [-Wunused-function]
+  197 |   static void MX_I2C1_Init(void)
+      |               ^~~~~~~~~~~~
+../Core/Src/main.c:149:8: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  149 |   void SystemClock_Config(void)
+      |        ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+
+18:42:20 Build Failed. 10 errors, 11 warnings. (took 356ms)
+
