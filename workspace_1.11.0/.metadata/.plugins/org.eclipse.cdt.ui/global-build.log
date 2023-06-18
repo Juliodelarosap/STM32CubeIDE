@@ -1,176 +1,70 @@
-20:45:57 **** Incremental Build of configuration Debug for project asignacion_2 ****
+19:28:43 **** Incremental Build of configuration Debug for project osiloscopio_micro ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:329:35: warning: pointer targets in passing argument 1 of 'scroll_string' differ in signedness [-Wpointer-sign]
-  329 |                     scroll_string("x2",150, left);
-      |                                   ^~~~
-      |                                   |
-      |                                   char *
-In file included from ../Core/Src/main.c:23:
-../Core/Inc/max_matrix_stm32.h:70:30: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   70 | void scroll_string (uint8_t *string, uint32_t speed, char direction);
-      |                     ~~~~~~~~~^~~~~~
-../Core/Src/main.c:291:17: warning: unused variable 'Distancia' [-Wunused-variable]
-  291 |        uint16_t Distancia = ultrasonic_measure_distance();
-      |                 ^~~~~~~~~
-arm-none-eabi-gcc -o "asignacion_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\asignacion_2\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="asignacion_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: asignacion_2.elf
+../Core/Src/main.c:126:25: warning: format '%u' expects argument of type 'unsigned int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  126 |        sprintf(valor, "%u\n", adc);
+      |                        ~^     ~~~
+      |                         |     |
+      |                         |     uint32_t {aka long unsigned int}
+      |                         unsigned int
+      |                        %lu
+../Core/Src/main.c:131:22: warning: passing argument 1 of 'HAL_ADC_Start' from incompatible pointer type [-Wincompatible-pointer-types]
+  131 |        HAL_ADC_Start(&adc); // Iniciar conversión ADC
+      |                      ^~~~
+      |                      |
+      |                      uint32_t * {aka long unsigned int *}
+In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
+                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:206:58: note: expected 'ADC_HandleTypeDef *' {aka 'struct __ADC_HandleTypeDef *'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+  206 | HAL_StatusTypeDef       HAL_ADC_Start(ADC_HandleTypeDef* hadc);
+      |                                       ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/main.c:132:34: warning: passing argument 1 of 'HAL_ADC_PollForConversion' from incompatible pointer type [-Wincompatible-pointer-types]
+  132 |        HAL_ADC_PollForConversion(&adc, HAL_MAX_DELAY); // Esperar a que se complete la conversión
+      |                                  ^~~~
+      |                                  |
+      |                                  uint32_t * {aka long unsigned int *}
+In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
+                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:208:70: note: expected 'ADC_HandleTypeDef *' {aka 'struct __ADC_HandleTypeDef *'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+  208 | HAL_StatusTypeDef       HAL_ADC_PollForConversion(ADC_HandleTypeDef* hadc, uint32_t Timeout);
+      |                                                   ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/main.c:133:45: warning: passing argument 1 of 'HAL_ADC_GetValue' from incompatible pointer type [-Wincompatible-pointer-types]
+  133 |        uint32_t adcValue = HAL_ADC_GetValue(&adc); // Obtener el valor convertido
+      |                                             ^~~~
+      |                                             |
+      |                                             uint32_t * {aka long unsigned int *}
+In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
+                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:220:61: note: expected 'ADC_HandleTypeDef *' {aka 'struct __ADC_HandleTypeDef *'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+  220 | uint32_t                HAL_ADC_GetValue(ADC_HandleTypeDef* hadc);
+      |                                          ~~~~~~~~~~~~~~~~~~~^~~~
+../Core/Src/main.c:134:21: warning: passing argument 1 of 'HAL_ADC_Stop' from incompatible pointer type [-Wincompatible-pointer-types]
+  134 |        HAL_ADC_Stop(&adc); // Detener la conversión ADC
+      |                     ^~~~
+      |                     |
+      |                     uint32_t * {aka long unsigned int *}
+In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
+                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:207:57: note: expected 'ADC_HandleTypeDef *' {aka 'struct __ADC_HandleTypeDef *'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+  207 | HAL_StatusTypeDef       HAL_ADC_Stop(ADC_HandleTypeDef* hadc);
+      |                                      ~~~~~~~~~~~~~~~~~~~^~~~
+arm-none-eabi-gcc -o "osiloscopio_micro.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\osiloscopio_micro\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="osiloscopio_micro.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: osiloscopio_micro.elf
  
-arm-none-eabi-size   asignacion_2.elf 
-arm-none-eabi-objdump -h -S  asignacion_2.elf  > "asignacion_2.list"
+arm-none-eabi-size   osiloscopio_micro.elf 
+arm-none-eabi-objdump -h -S  osiloscopio_micro.elf  > "osiloscopio_micro.list"
    text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
+  22708	    120	   2136	  24964	   6184	osiloscopio_micro.elf
 Finished building: default.size.stdout
  
-Finished building: asignacion_2.list
- 
-20:57:33 **** Incremental Build of configuration Debug for project asignacion_2 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:329:35: warning: pointer targets in passing argument 1 of 'scroll_string' differ in signedness [-Wpointer-sign]
-  329 |                     scroll_string("x2",150, left);
-      |                                   ^~~~
-      |                                   |
-      |                                   char *
-In file included from ../Core/Src/main.c:23:
-../Core/Inc/max_matrix_stm32.h:70:30: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   70 | void scroll_string (uint8_t *string, uint32_t speed, char direction);
-      |                     ~~~~~~~~~^~~~~~
-../Core/Src/main.c:291:17: warning: unused variable 'Distancia' [-Wunused-variable]
-  291 |        uint16_t Distancia = ultrasonic_measure_distance();
-      |                 ^~~~~~~~~
-arm-none-eabi-gcc -o "asignacion_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\asignacion_2\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="asignacion_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: asignacion_2.elf
- 
-arm-none-eabi-size   asignacion_2.elf 
-arm-none-eabi-objdump -h -S  asignacion_2.elf  > "asignacion_2.list"
-   text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
-Finished building: default.size.stdout
- 
-Finished building: asignacion_2.list
- 
-20:59:53 **** Incremental Build of configuration Debug for project asignacion_2 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:329:35: warning: pointer targets in passing argument 1 of 'scroll_string' differ in signedness [-Wpointer-sign]
-  329 |                     scroll_string("x2",150, left);
-      |                                   ^~~~
-      |                                   |
-      |                                   char *
-In file included from ../Core/Src/main.c:23:
-../Core/Inc/max_matrix_stm32.h:70:30: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   70 | void scroll_string (uint8_t *string, uint32_t speed, char direction);
-      |                     ~~~~~~~~~^~~~~~
-../Core/Src/main.c:291:17: warning: unused variable 'Distancia' [-Wunused-variable]
-  291 |        uint16_t Distancia = ultrasonic_measure_distance();
-      |                 ^~~~~~~~~
-arm-none-eabi-gcc -o "asignacion_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\asignacion_2\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="asignacion_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: asignacion_2.elf
- 
-arm-none-eabi-size   asignacion_2.elf 
-arm-none-eabi-objdump -h -S  asignacion_2.elf  > "asignacion_2.list"
-   text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
-Finished building: default.size.stdout
- 
-Finished building: asignacion_2.list
- 
-21:00:08 **** Incremental Build of configuration Debug for project asignacion_2 ****
-make -j16 all 
-arm-none-eabi-size   asignacion_2.elf 
-   text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
-Finished building: default.size.stdout
- 
-21:01:42 **** Incremental Build of configuration Debug for project asignacion_2 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:329:35: warning: pointer targets in passing argument 1 of 'scroll_string' differ in signedness [-Wpointer-sign]
-  329 |                     scroll_string("x2",150, left);
-      |                                   ^~~~
-      |                                   |
-      |                                   char *
-In file included from ../Core/Src/main.c:23:
-../Core/Inc/max_matrix_stm32.h:70:30: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   70 | void scroll_string (uint8_t *string, uint32_t speed, char direction);
-      |                     ~~~~~~~~~^~~~~~
-../Core/Src/main.c:291:17: warning: unused variable 'Distancia' [-Wunused-variable]
-  291 |        uint16_t Distancia = ultrasonic_measure_distance();
-      |                 ^~~~~~~~~
-arm-none-eabi-gcc -o "asignacion_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\asignacion_2\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="asignacion_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: asignacion_2.elf
- 
-arm-none-eabi-size   asignacion_2.elf 
-arm-none-eabi-objdump -h -S  asignacion_2.elf  > "asignacion_2.list"
-   text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
-Finished building: default.size.stdout
- 
-Finished building: asignacion_2.list
- 
-21:02:17 **** Incremental Build of configuration Debug for project asignacion_2 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:329:35: warning: pointer targets in passing argument 1 of 'scroll_string' differ in signedness [-Wpointer-sign]
-  329 |                     scroll_string("x2",150, left);
-      |                                   ^~~~
-      |                                   |
-      |                                   char *
-In file included from ../Core/Src/main.c:23:
-../Core/Inc/max_matrix_stm32.h:70:30: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   70 | void scroll_string (uint8_t *string, uint32_t speed, char direction);
-      |                     ~~~~~~~~~^~~~~~
-../Core/Src/main.c:291:17: warning: unused variable 'Distancia' [-Wunused-variable]
-  291 |        uint16_t Distancia = ultrasonic_measure_distance();
-      |                 ^~~~~~~~~
-arm-none-eabi-gcc -o "asignacion_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\asignacion_2\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="asignacion_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: asignacion_2.elf
- 
-arm-none-eabi-size   asignacion_2.elf 
-arm-none-eabi-objdump -h -S  asignacion_2.elf  > "asignacion_2.list"
-   text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
-Finished building: default.size.stdout
- 
-Finished building: asignacion_2.list
- 
-21:02:49 **** Incremental Build of configuration Debug for project asignacion_2 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:329:35: warning: pointer targets in passing argument 1 of 'scroll_string' differ in signedness [-Wpointer-sign]
-  329 |                     scroll_string("x2",150, left);
-      |                                   ^~~~
-      |                                   |
-      |                                   char *
-In file included from ../Core/Src/main.c:23:
-../Core/Inc/max_matrix_stm32.h:70:30: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
-   70 | void scroll_string (uint8_t *string, uint32_t speed, char direction);
-      |                     ~~~~~~~~~^~~~~~
-../Core/Src/main.c:291:17: warning: unused variable 'Distancia' [-Wunused-variable]
-  291 |        uint16_t Distancia = ultrasonic_measure_distance();
-      |                 ^~~~~~~~~
-arm-none-eabi-gcc -o "asignacion_2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\asignacion_2\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="asignacion_2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: asignacion_2.elf
- 
-arm-none-eabi-size   asignacion_2.elf 
-arm-none-eabi-objdump -h -S  asignacion_2.elf  > "asignacion_2.list"
-   text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
-Finished building: default.size.stdout
- 
-Finished building: asignacion_2.list
- 
-21:06:34 **** Incremental Build of configuration Debug for project asignacion_2 ****
-make -j16 all 
-arm-none-eabi-size   asignacion_2.elf 
-   text	   data	    bss	    dec	    hex	filename
-  25808	   1040	   2184	  29032	   7168	asignacion_2.elf
-Finished building: default.size.stdout
+Finished building: osiloscopio_micro.list
  

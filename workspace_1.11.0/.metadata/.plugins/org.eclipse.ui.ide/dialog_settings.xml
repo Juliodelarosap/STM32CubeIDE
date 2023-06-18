@@ -9,6 +9,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\encoder_prueba"/>
 			<item value="C:\Users\thitt\STM32CubeIDE\workspace_1.11.0"/>
 			<item value="C:\Users\thitt\OneDrive\Documentos\GitHub\STM32-MICRO--2023\STM32CubeIDE"/>
 		</list>
