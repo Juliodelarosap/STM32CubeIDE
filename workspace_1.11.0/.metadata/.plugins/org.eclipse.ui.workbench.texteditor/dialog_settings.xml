@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="z"/>
+		<item key="wrap" value="false"/>
+		<item key="casesensitive" value="true"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="z"/>
+			<item value="wave"/>
+			<item value="matris_on"/>
+			<item value="MEDICION"/>
+			<item value="i"/>
+			<item value="M_PI"/>
+			<item value="faseincrement"/>
+			<item value="fase_incrementada"/>
+			<item value="phase"/>
+			<item value="cuenta"/>
+			<item value="phaseincrement"/>
+			<item value="slope"/>
+		</list>
+		<list key="replacehistory">
+			<item value=""/>
+			<item value="onda"/>
+			<item value="encendido"/>
+			<item value="adc"/>
+			<item value="PI"/>
+			<item value="fase_incrementada"/>
+			<item value="fase"/>
+			<item value="contador"/>
+			<item value="inclinacion"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1363"/>
+		<item key="DIALOG_Y_ORIGIN" value="236"/>
+		<item key="DIALOG_WIDTH" value="414"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>
