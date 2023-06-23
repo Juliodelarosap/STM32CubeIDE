@@ -136,26 +136,82 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   	  while (1)
   	  {
-  		 sprintf(valor, "%u\n",adc);
+  		/* sprintf(valor, "%u\n",adc);
   		  uint8_t length = strlen(valor);
   		  HAL_UART_Transmit(&huart2, (uint8_t*)valor,length, 100);
 
   	  for (int a = 0; a <= 8; a++){
-		setled(i , b , 1);
+		setled(0, a-1, 1);
 		HAL_Delay(1000/count);
 		max_clear();
 		if(a >= 8){
 			a = 0;
 	max_clear();
-		}
-  		int rangos[] = {0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096};
+		}*/
+  		switch (onda) {
+  		    case 0:
+  		        if (adc >= 0 && adc <= 512) {
+  		            encendido[0][onda] = 1;
+  		        } else {
+  		            encendido[0][onda] = 0;
+  		        }
+  		        break;
 
-  		for (int i = 0; i < 8; i++) {
-  		    if (adc >= rangos[i] && adc <= rangos[i+1]) {
-  		        encendido[i][onda] = 1;
-  		    } else {
-  		        encendido[i][onda] = 0;
-  		    }
+  		    case 1:
+  		        if (adc > 512 && adc <= 1024) {
+  		            encendido[1][onda] = 1;
+  		        } else {
+  		            encendido[1][onda] = 0;
+  		        }
+  		        break;
+
+  		    case 2:
+  		        if (adc > 1024 && adc <= 1536) {
+  		            encendido[2][onda] = 1;
+  		        } else {
+  		            encendido[2][onda] = 0;
+  		        }
+  		        break;
+
+  		    case 3:
+  		        if (adc > 1536 && adc <= 2048) {
+  		            encendido[3][onda] = 1;
+  		        } else {
+  		            encendido[3][onda] = 0;
+  		        }
+  		        break;
+
+  		    case 4:
+  		        if (adc > 2048 && adc <= 2560) {
+  		            encendido[4][onda] = 1;
+  		        } else {
+  		            encendido[4][onda] = 0;
+  		        }
+  		        break;
+
+  		    case 5:
+  		        if (adc > 2560 && adc <= 3072) {
+  		            encendido[5][onda] = 1;
+  		        } else {
+  		            encendido[5][onda] = 0;
+  		        }
+  		        break;
+
+  		    case 6:
+  		        if (adc > 3072 && adc <= 3584) {
+  		            encendido[6][onda] = 1;
+  		        } else {
+  		            encendido[6][onda] = 0;
+  		        }
+  		        break;
+
+  		    case 7:
+  		        if (adc > 3584 && adc <= 4096) {
+  		            encendido[7][onda] = 1;
+  		        } else {
+  		            encendido[7][onda] = 0;
+  		        }
+  		        break;
   		}
 
   		for (int b = 0; b < 8; b++) {
@@ -174,7 +230,6 @@ int main(void)
   		    onda = 0;
   		}
 
-  	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

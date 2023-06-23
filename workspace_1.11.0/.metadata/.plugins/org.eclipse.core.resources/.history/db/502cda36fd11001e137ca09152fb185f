@@ -136,45 +136,50 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   	  while (1)
   	  {
-  		 sprintf(valor, "%u\n",adc);
+  		/* sprintf(valor, "%u\n",adc);
   		  uint8_t length = strlen(valor);
   		  HAL_UART_Transmit(&huart2, (uint8_t*)valor,length, 100);
 
   	  for (int a = 0; a <= 8; a++){
-		setled(i , b , 1);
+		setled(0, a-1, 1);
 		HAL_Delay(1000/count);
 		max_clear();
 		if(a >= 8){
 			a = 0;
 	max_clear();
-		}
-  		int rangos[] = {0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096};
+		}*/
+  		int encendido[8][8];
 
-  		for (int i = 0; i < 8; i++) {
-  		    if (adc >= rangos[i] && adc <= rangos[i+1]) {
-  		        encendido[i][onda] = 1;
-  		    } else {
-  		        encendido[i][onda] = 0;
-  		    }
-  		}
+  		// Comprobar si el valor de adc se encuentra en el rango válido
+  		if (adc >= 250 && adc <= 4000) {
+  		    // Calcular el índice de la matriz encendido basado en el valor de adc
+  		    int onda = (adc - 250) / 500;
 
-  		for (int b = 0; b < 8; b++) {
+  		    // Actualizar la matriz encendido y llamar a la función setled para cada LED
   		    for (int i = 0; i < 8; i++) {
-  		        if (encendido[i][b] == 1) {
-  		            setled(i, b, 1);
+  		        if (i == onda) {
+  		            encendido[i][onda] = 1;
+  		            // Llamar a la función setled con valor 1 para encender el LED en la posición (i, onda)
+  		            setled(i, onda, 1);
   		        } else {
-  		            setled(i, b, 0);
+  		            encendido[i][onda] = 0;
+  		            // Llamar a la función setled con valor 0 para apagar el LED en la posición (i, onda)
+  		            setled(i, onda, 0);
   		        }
   		    }
   		}
 
+  		// Incrementar la variable onda para el siguiente ciclo
   		onda++;
+
+  		// Retardo de 30 ms
   		HAL_Delay(30);
+
+  		// Verificar si onda ha alcanzado el valor máximo (7) y reiniciarlo a 0
   		if (onda > 7) {
   		    onda = 0;
   		}
 
-  	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

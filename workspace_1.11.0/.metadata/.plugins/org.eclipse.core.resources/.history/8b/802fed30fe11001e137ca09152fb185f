@@ -136,18 +136,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   	  while (1)
   	  {
-  		 sprintf(valor, "%u\n",adc);
+  		/* sprintf(valor, "%u\n",adc);
   		  uint8_t length = strlen(valor);
   		  HAL_UART_Transmit(&huart2, (uint8_t*)valor,length, 100);
 
   	  for (int a = 0; a <= 8; a++){
-		setled(i , b , 1);
+		setled(0, a-1, 1);
 		HAL_Delay(1000/count);
 		max_clear();
 		if(a >= 8){
 			a = 0;
 	max_clear();
-		}
+		}*/
   		int rangos[] = {0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096};
 
   		for (int i = 0; i < 8; i++) {
@@ -174,7 +174,6 @@ int main(void)
   		    onda = 0;
   		}
 
-  	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

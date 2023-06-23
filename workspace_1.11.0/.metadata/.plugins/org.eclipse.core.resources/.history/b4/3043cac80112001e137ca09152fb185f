@@ -136,35 +136,29 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   	  while (1)
   	  {
-  		 sprintf(valor, "%u\n",adc);
+  		/* sprintf(valor, "%u\n",adc);
   		  uint8_t length = strlen(valor);
   		  HAL_UART_Transmit(&huart2, (uint8_t*)valor,length, 100);
 
   	  for (int a = 0; a <= 8; a++){
-		setled(i , b , 1);
+		setled(0, a-1, 1);
 		HAL_Delay(1000/count);
 		max_clear();
 		if(a >= 8){
 			a = 0;
 	max_clear();
-		}
+		}*/
   		int rangos[] = {0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096};
 
-  		for (int i = 0; i < 8; i++) {
-  		    if (adc >= rangos[i] && adc <= rangos[i+1]) {
-  		        encendido[i][onda] = 1;
-  		    } else {
-  		        encendido[i][onda] = 0;
-  		    }
+  		int i = 0;
+  		while (i < 8 && !(adc >= rangos[i] && adc <= rangos[i + 1])) {
+  		    i++;
   		}
 
   		for (int b = 0; b < 8; b++) {
-  		    for (int i = 0; i < 8; i++) {
-  		        if (encendido[i][b] == 1) {
-  		            setled(i, b, 1);
-  		        } else {
-  		            setled(i, b, 0);
-  		        }
+  		    encendido[b][onda] = (b == i) ? 1 : 0;
+  		    for (int j = 0; j < 8; j++) {
+  		        setled(j, b, encendido[b][onda]);
   		    }
   		}
 
@@ -174,7 +168,6 @@ int main(void)
   		    onda = 0;
   		}
 
-  	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

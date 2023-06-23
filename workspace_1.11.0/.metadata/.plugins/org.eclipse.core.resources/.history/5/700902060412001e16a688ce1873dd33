@@ -136,45 +136,59 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   	  while (1)
   	  {
-  		 sprintf(valor, "%u\n",adc);
+  		/* sprintf(valor, "%u\n",adc);
   		  uint8_t length = strlen(valor);
   		  HAL_UART_Transmit(&huart2, (uint8_t*)valor,length, 100);
 
   	  for (int a = 0; a <= 8; a++){
-		setled(i , b , 1);
+		setled(0, a-1, 1);
 		HAL_Delay(1000/count);
 		max_clear();
 		if(a >= 8){
 			a = 0;
 	max_clear();
-		}
+		}*/
   		int rangos[] = {0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096};
+  		int tiempoOnda = 30; // Valor predeterminado para el tiempo de la onda (en milisegundos)
+  		float voltaje = 3.3; // Valor predeterminado para el voltaje
 
-  		for (int i = 0; i < 8; i++) {
-  		    if (adc >= rangos[i] && adc <= rangos[i+1]) {
-  		        encendido[i][onda] = 1;
-  		    } else {
-  		        encendido[i][onda] = 0;
-  		    }
-  		}
 
-  		for (int b = 0; b < 8; b++) {
+  		while (1) {
+  		    // Obtener la posición del encoder (reemplaza esta línea con tu método de lectura de posición del encoder)
+  		    position = getPosition(); // Función para obtener la posición del encoder
+
+  		    // Ajustar el tiempo de la onda en función de la posición del encoder
+  		    tiempoOnda = map(position, 0, 1000, 10, 100); // Mapeo de la posición del encoder al rango de tiempo de onda (10-100 ms)
+
+  		    // Ajustar el voltaje en función de la posición del encoder
+  		    voltaje = map(position, 0, 1000, 0.0, 5.0); // Mapeo de la posición del encoder al rango de voltaje (0-5V)
+
   		    for (int i = 0; i < 8; i++) {
-  		        if (encendido[i][b] == 1) {
-  		            setled(i, b, 1);
+  		        if (adc >= rangos[i] && adc <= rangos[i+1]) {
+  		            encendido[i][onda] = 1;
   		        } else {
-  		            setled(i, b, 0);
+  		            encendido[i][onda] = 0;
   		        }
   		    }
+
+  		    for (int b = 0; b < 8; b++) {
+  		        for (int i = 0; i < 8; i++) {
+  		            if (encendido[i][b] == 1) {
+  		                setled(i, b, 1);
+  		            } else {
+  		                setled(i, b, 0);
+  		            }
+  		        }
+  		    }
+
+  		    onda++;
+  		    HAL_Delay(tiempoOnda); // Utilizar el tiempo de la onda ajustado
+
+  		    if (onda > 7) {
+  		        onda = 0;
+  		    }
   		}
 
-  		onda++;
-  		HAL_Delay(30);
-  		if (onda > 7) {
-  		    onda = 0;
-  		}
-
-  	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
