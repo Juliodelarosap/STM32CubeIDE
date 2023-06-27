@@ -59,6 +59,11 @@ char valor[11];
 uint8_t offset = 0;
 int encendido[8][8];
 int onda = 0;
+int voldiv = 0;
+int boton = 0;
+int pastpos = 0;
+int read = 0;
+int write = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -88,6 +93,7 @@ int16_t position = 0;
 	count = (int16_t)counter;
 	position = count/4;
 	}
+
 
 
 /* USER CODE END 0 */
@@ -137,21 +143,41 @@ int main(void)
   	  while (1)
   	  {
   		 sprintf(valor, "%u\n",adc);
-  		  uint8_t length = strlen(valor);
-  		  HAL_UART_Transmit(&huart2, (uint8_t*)valor,length, 100);
+  		 uint8_t length = strlen(valor);
+  		 HAL_UART_Transmit(&huart2, (uint8_t*)valor,length, 100);
 
-  	  for (int a = 0; a <= 8; a++){
-		setled(i , b , 1);
-		HAL_Delay(1000/count);
-		max_clear();
-		if(a >= 8){
-			a = 0;
-	max_clear();
-		}
-  		int rangos[] = {0, 512, 1024, 1536, 2048, 2560, 3072, 3584, 4096};
+  		if (!HAL_GPIO_ReadPin(pb1_GPIO_Port, pb1_Pin)){
+  			boton++;
+  			HAL_Delay(50);
+  		}
+if (boton == 0 && position > pastpos){
+	read++;
+
+}
+else if (boton == 0 && position < pastpos){
+	read--;
+if (read <= 1){
+		read = 1;
+	}
+}
+if (boton == 1 && position > pastpos ){
+	write++;
+}
+else if (boton == 1 && position < pastpos ){
+	write--;
+
+	if (write <= 1){
+		write = 1;
+	}
+}
+position = pastpos;
+
+
+   		//HAL_Delay(100 + count);
+  		int rangos[] = {250, 720, 1260, 1780, 2280, 2780, 3280, 3780, 4000};
 
   		for (int i = 0; i < 8; i++) {
-  		    if (adc >= rangos[i] && adc <= rangos[i+1]) {
+  		    if (adc >= (rangos[i]/ (read*0.20)) && adc <= (rangos[i+1]/ (read *0.20))) {
   		        encendido[i][onda] = 1;
   		    } else {
   		        encendido[i][onda] = 0;
@@ -168,6 +194,12 @@ int main(void)
   		    }
   		}
 
+  			HAL_Delay(60 + write);
+
+  		if (boton >= 2){
+  			HAL_Delay(50);
+  			boton = 0;
+  		}
   		onda++;
   		HAL_Delay(30);
   		if (onda > 7) {
@@ -178,9 +210,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  	  }
+   }
   /* USER CODE END 3 */
-}
+//}
 
 /**
   * @brief System Clock Configuration
@@ -496,7 +528,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : pb1_Pin */
   GPIO_InitStruct.Pin = pb1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(pb1_GPIO_Port, &GPIO_InitStruct);
 
@@ -506,6 +538,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 
