@@ -1,4 +1,4 @@
-20:53:10 **** Incremental Build of configuration Debug for project osiloscopio_micro ****
+18:43:31 **** Incremental Build of configuration Debug for project osiloscopio_micro ****
 make -j16 all 
 arm-none-eabi-size   osiloscopio_micro.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   osiloscopio_micro.elf
 Finished building: default.size.stdout
  
 
-20:53:10 Build Finished. 0 errors, 0 warnings. (took 345ms)
+18:43:31 Build Finished. 0 errors, 0 warnings. (took 292ms)
 

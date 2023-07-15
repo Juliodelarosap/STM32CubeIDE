@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="position"/>
+		<item key="selection" value="a"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="x"/>
+			<item value="v"/>
 			<item value="posicion"/>
 			<item value="z"/>
 			<item value="wave"/>
@@ -23,6 +25,7 @@
 			<item value="slope"/>
 		</list>
 		<list key="replacehistory">
+			<item value="a"/>
 			<item value="position"/>
 			<item value=""/>
 			<item value="onda"/>

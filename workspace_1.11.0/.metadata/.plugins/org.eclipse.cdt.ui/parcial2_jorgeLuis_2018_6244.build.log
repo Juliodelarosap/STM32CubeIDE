@@ -1,0 +1,10 @@
+19:47:34 **** Incremental Build of configuration Debug for project parcial2_jorgeLuis_2018_6244 ****
+make -j16 all 
+arm-none-eabi-size   parcial2_jorgeLuis_2018_6244.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16856	     40	    568	  17464	   4438	parcial2_jorgeLuis_2018_6244.elf
+Finished building: default.size.stdout
+ 
+
+19:47:34 Build Finished. 0 errors, 0 warnings. (took 360ms)
+

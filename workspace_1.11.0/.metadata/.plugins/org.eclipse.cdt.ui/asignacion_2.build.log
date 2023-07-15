@@ -1,4 +1,4 @@
-21:06:34 **** Incremental Build of configuration Debug for project asignacion_2 ****
+18:43:30 **** Incremental Build of configuration Debug for project asignacion_2 ****
 make -j16 all 
 arm-none-eabi-size   asignacion_2.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   asignacion_2.elf
 Finished building: default.size.stdout
  
 
-21:06:34 Build Finished. 0 errors, 0 warnings. (took 301ms)
+18:43:30 Build Finished. 0 errors, 0 warnings. (took 293ms)
 

@@ -1,0 +1,20 @@
+18:43:32 **** Incremental Build of configuration Debug for project reproductor ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'saveDataToFlash':
+../Core/Src/main.c:77:5: warning: implicit declaration of function 'FLASH_Erase_Sector' [-Wimplicit-function-declaration]
+   77 |     FLASH_Erase_Sector(FLASH_SECTOR_2, FLASH_VOLTAGE_RANGE_3);//HAY ALGO QUE CAMBIAR Y INVESTIGAR
+      |     ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:77:24: error: 'FLASH_SECTOR_2' undeclared (first use in this function)
+   77 |     FLASH_Erase_Sector(FLASH_SECTOR_2, FLASH_VOLTAGE_RANGE_3);//HAY ALGO QUE CAMBIAR Y INVESTIGAR
+      |                        ^~~~~~~~~~~~~~
+../Core/Src/main.c:77:24: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:77:40: error: 'FLASH_VOLTAGE_RANGE_3' undeclared (first use in this function); did you mean 'VOLTAGE_RANGE_3'?
+   77 |     FLASH_Erase_Sector(FLASH_SECTOR_2, FLASH_VOLTAGE_RANGE_3);//HAY ALGO QUE CAMBIAR Y INVESTIGAR
+      |                                        ^~~~~~~~~~~~~~~~~~~~~
+      |                                        VOLTAGE_RANGE_3
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+
+18:43:33 Build Failed. 3 errors, 1 warnings. (took 367ms)
+

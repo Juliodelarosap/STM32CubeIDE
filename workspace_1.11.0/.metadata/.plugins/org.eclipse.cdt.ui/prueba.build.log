@@ -1,0 +1,10 @@
+18:43:32 **** Incremental Build of configuration Debug for project prueba ****
+make -j16 all 
+arm-none-eabi-size   prueba.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11648	     20	   1780	  13448	   3488	prueba.elf
+Finished building: default.size.stdout
+ 
+
+18:43:32 Build Finished. 0 errors, 0 warnings. (took 292ms)
+

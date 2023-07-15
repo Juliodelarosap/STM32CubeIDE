@@ -1,0 +1,3 @@
+StepMotor.c:12:6:stepper_half_drive	3
+StepMotor.c:33:6:stepper_set_rpm	1
+StepMotor.c:41:6:stepper_step_angle	6

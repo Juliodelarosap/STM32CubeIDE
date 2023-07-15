@@ -1,14 +1,21 @@
-20:01:22 **** Incremental Build of configuration Debug for project grabadora_de_audio ****
+19:47:32 **** Incremental Build of configuration Debug for project parcial2_jorgeLuis_2018_6244 ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "grabadora_de_audio.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\grabadora_de_audio\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="grabadora_de_audio.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: grabadora_de_audio.elf
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "parcial2_jorgeLuis_2018_6244.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\parcial2_jorgeLuis_2018_6244\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="parcial2_jorgeLuis_2018_6244.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: parcial2_jorgeLuis_2018_6244.elf
  
-arm-none-eabi-size   grabadora_de_audio.elf 
-arm-none-eabi-objdump -h -S  grabadora_de_audio.elf  > "grabadora_de_audio.list"
+arm-none-eabi-size   parcial2_jorgeLuis_2018_6244.elf 
+arm-none-eabi-objdump -h -S  parcial2_jorgeLuis_2018_6244.elf  > "parcial2_jorgeLuis_2018_6244.list"
    text	   data	    bss	    dec	    hex	filename
-  22968	    124	  12328	  35420	   8a5c	grabadora_de_audio.elf
+  16856	     40	    568	  17464	   4438	parcial2_jorgeLuis_2018_6244.elf
 Finished building: default.size.stdout
  
-Finished building: grabadora_de_audio.list
+Finished building: parcial2_jorgeLuis_2018_6244.list
+ 
+19:47:34 **** Incremental Build of configuration Debug for project parcial2_jorgeLuis_2018_6244 ****
+make -j16 all 
+arm-none-eabi-size   parcial2_jorgeLuis_2018_6244.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16856	     40	    568	  17464	   4438	parcial2_jorgeLuis_2018_6244.elf
+Finished building: default.size.stdout
  

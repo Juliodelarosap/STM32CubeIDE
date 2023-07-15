@@ -1,0 +1,7 @@
+main.c:97:6:read_keypad	33
+main.c:231:5:main	32
+main.c:453:6:SystemClock_Config	4
+main.c:501:13:MX_I2C1_Init	4
+main.c:549:13:MX_USART2_UART_Init	2
+main.c:584:13:MX_GPIO_Init	1
+main.c:646:6:Error_Handler	1

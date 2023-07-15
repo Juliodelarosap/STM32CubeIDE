@@ -1,0 +1,2 @@
+ultrasonico.c:8:6:ultrasonic_init	1
+ultrasonico.c:14:10:ultrasonic_measure_distance	6
