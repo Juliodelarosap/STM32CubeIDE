@@ -1,24 +1,17 @@
-19:22:30 **** Incremental Build of configuration Debug for project reproductor de audio ****
+20:30:57 **** Incremental Build of configuration Debug for project reproductor de audio ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -Os -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:145:29: warning: iteration 1289 invokes undefined behavior [-Waggressive-loop-optimizations]
-  145 |      audiosignal2=audiostack[i]*10;
-      |                   ~~~~~~~~~~^~~
-../Core/Src/main.c:144:5: note: within this loop
-  144 |     for(int i=0;i<4096;i++){
-      |     ^~~
-arm-none-eabi-gcc -o "reproductor de audio.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\Downloads\reproductor de audio (1)\reproductor de audio\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="reproductor de audio.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "reproductor de audio.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\reproductor de audio\reproductor de audio\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="reproductor de audio.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: reproductor de audio.elf
  
 arm-none-eabi-size   reproductor\ de\ audio.elf 
 arm-none-eabi-objdump -h -S  reproductor\ de\ audio.elf  > "reproductor de audio.list"
    text	   data	    bss	    dec	    hex	filename
-   9308	   5176	   2096	  16580	   40c4	reproductor de audio.elf
+  20204	  13908	   2180	  36292	   8dc4	reproductor de audio.elf
 Finished building: default.size.stdout
  
 Finished building: reproductor de audio.list
  
 
-19:22:30 Build Finished. 0 errors, 1 warnings. (took 885ms)
+20:30:59 Build Finished. 0 errors, 0 warnings. (took 2s.191ms)
 

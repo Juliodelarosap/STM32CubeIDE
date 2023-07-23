@@ -1,21 +1,49 @@
-19:47:32 **** Incremental Build of configuration Debug for project parcial2_jorgeLuis_2018_6244 ****
+20:27:39 **** Incremental Build of configuration Debug for project reproductor de audio ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "parcial2_jorgeLuis_2018_6244.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\parcial2_jorgeLuis_2018_6244\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="parcial2_jorgeLuis_2018_6244.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: parcial2_jorgeLuis_2018_6244.elf
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "reproductor de audio.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\reproductor de audio\reproductor de audio\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="reproductor de audio.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: reproductor de audio.elf
  
-arm-none-eabi-size   parcial2_jorgeLuis_2018_6244.elf 
-arm-none-eabi-objdump -h -S  parcial2_jorgeLuis_2018_6244.elf  > "parcial2_jorgeLuis_2018_6244.list"
+arm-none-eabi-size   reproductor\ de\ audio.elf 
+arm-none-eabi-objdump -h -S  reproductor\ de\ audio.elf  > "reproductor de audio.list"
    text	   data	    bss	    dec	    hex	filename
-  16856	     40	    568	  17464	   4438	parcial2_jorgeLuis_2018_6244.elf
+  20200	  13908	   2180	  36288	   8dc0	reproductor de audio.elf
 Finished building: default.size.stdout
  
-Finished building: parcial2_jorgeLuis_2018_6244.list
+Finished building: reproductor de audio.list
  
-19:47:34 **** Incremental Build of configuration Debug for project parcial2_jorgeLuis_2018_6244 ****
+20:29:25 **** Build of configuration Debug for project osiloscopio_micro ****
 make -j16 all 
-arm-none-eabi-size   parcial2_jorgeLuis_2018_6244.elf 
+arm-none-eabi-size   osiloscopio_micro.elf 
    text	   data	    bss	    dec	    hex	filename
-  16856	     40	    568	  17464	   4438	parcial2_jorgeLuis_2018_6244.elf
+  26388	    120	   2576	  29084	   719c	osiloscopio_micro.elf
 Finished building: default.size.stdout
+ 
+20:30:13 **** Incremental Build of configuration Debug for project reproductor de audio ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "reproductor de audio.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\reproductor de audio\reproductor de audio\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="reproductor de audio.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: reproductor de audio.elf
+ 
+arm-none-eabi-size   reproductor\ de\ audio.elf 
+arm-none-eabi-objdump -h -S  reproductor\ de\ audio.elf  > "reproductor de audio.list"
+   text	   data	    bss	    dec	    hex	filename
+  20200	  13908	   2180	  36288	   8dc0	reproductor de audio.elf
+Finished building: default.size.stdout
+ 
+Finished building: reproductor de audio.list
+ 
+20:30:57 **** Incremental Build of configuration Debug for project reproductor de audio ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "reproductor de audio.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\STM32CubeIDE\workspace_1.11.0\reproductor de audio\reproductor de audio\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="reproductor de audio.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: reproductor de audio.elf
+ 
+arm-none-eabi-size   reproductor\ de\ audio.elf 
+arm-none-eabi-objdump -h -S  reproductor\ de\ audio.elf  > "reproductor de audio.list"
+   text	   data	    bss	    dec	    hex	filename
+  20204	  13908	   2180	  36292	   8dc4	reproductor de audio.elf
+Finished building: default.size.stdout
+ 
+Finished building: reproductor de audio.list
  
