@@ -1,0 +1,10 @@
+21:09:30 **** Incremental Build of configuration Debug for project parcial ****
+make -j16 all 
+arm-none-eabi-size   parcial.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19232	     24	   2160	  21416	   53a8	parcial.elf
+Finished building: default.size.stdout
+ 
+
+21:09:31 Build Finished. 0 errors, 0 warnings. (took 686ms)
+

@@ -102,7 +102,7 @@ void back(){
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	char rxBuffer[BUFFER_SIZE];
+//	char rxBuffer[BUFFER_SIZE];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -132,19 +132,18 @@ int main(void)
 HAL_ADC_Start_DMA(&hadc1, &input_1, 1);
 HAL_DAC_Start_DMA(&hdac, DAC_CHANNEL_1, &input_1, 1, DAC_ALIGN_12B_R);
 HAL_TIM_Base_Init(&htim2);\
-char mensaje[20] = "Julio";
-char mensaje_1[20] = "encendido";
-char mensaje_2[20] = "apagado";
+//char mensaje_1[20] = "encendido";
+//char mensaje_2[20] = "apagado";
 char mensaje_3[20] = "muteon";
 char mensaje_4[20] = "muteoff";
-HAL_UART_Transmit(&huart2, (uint8_t*)mensaje, strlen(mensaje), 100);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		if (HAL_UART_Receive(&huart2,(uint8_t*)rxBuffer , 1, 100)== HAL_OK){
+		/*if (HAL_UART_Receive(&huart2,(uint8_t*)rxBuffer , 1, 100)== HAL_OK){
 			if (rxBuffer[0] = '1'){
 				HAL_UART_Transmit(&huart2, (uint8_t*)mensaje_1, strlen(mensaje_1), 100);
 				  next();
@@ -159,7 +158,7 @@ HAL_UART_Transmit(&huart2, (uint8_t*)mensaje, strlen(mensaje), 100);
 		  back();
 			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	  }
-
+*/
 
 if (!HAL_GPIO_ReadPin(mute_GPIO_Port, mute_Pin)){
 	count ++;
@@ -184,7 +183,7 @@ if (count == 3){
   }
   /* USER CODE END 3 */
 }
-
+}
 /**
   * @brief System Clock Configuration
   * @retval None

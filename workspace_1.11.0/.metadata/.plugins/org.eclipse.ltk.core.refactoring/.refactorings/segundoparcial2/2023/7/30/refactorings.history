@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;segundoparcial2/PARCIAL2_Majin_buu Debug.launch&apos; to &apos;segundoparcial2.launch&apos;" description="Rename resource &apos;PARCIAL2_Majin_buu Debug.launch&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="PARCIAL2_Majin_buu Debug.launch" name="segundoparcial2.launch" stamp="1690239194569" updateReferences="true"/>
+</session>

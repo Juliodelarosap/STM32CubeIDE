@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="a"/>
+		<item key="selection" value="ENTRADA"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Medida"/>
+			<item value="enviar_por_uart"/>
+			<item value="mute"/>
 			<item value="x"/>
 			<item value="v"/>
 			<item value="posicion"/>
@@ -20,14 +23,15 @@
 			<item value="faseincrement"/>
 			<item value="fase_incrementada"/>
 			<item value="phase"/>
-			<item value="cuenta"/>
-			<item value="phaseincrement"/>
-			<item value="slope"/>
 		</list>
 		<list key="replacehistory">
+			<item value="ENTRADA"/>
+			<item value="med"/>
+			<item value=""/>
+			<item value="uartfuncion"/>
+			<item value="count"/>
 			<item value="a"/>
 			<item value="position"/>
-			<item value=""/>
 			<item value="onda"/>
 			<item value="encendido"/>
 			<item value="adc"/>

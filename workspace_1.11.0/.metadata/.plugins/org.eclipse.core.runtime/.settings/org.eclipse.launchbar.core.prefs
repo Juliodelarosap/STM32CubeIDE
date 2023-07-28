@@ -1,7 +1,7 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:asignacion_2 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:calculadora Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:matrizstm32 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:micro2023 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:osiloscopio_micro Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:asignacion_2 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:calculadora Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:matrizstm32 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:micro2023 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:osiloscopio_micro Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:segundo_parcial Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:parcial Debug
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Osiloscipio_micro\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Osiloscipio_micro\ Debug/activeLaunchTarget=null\:---
@@ -14,5 +14,7 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:matrizstm32\ Debug/activeLaunch
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:micro2023\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:micro2023\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:osiloscopio_micro\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:parcial\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:parcial2_jorgeLuis_2018_6244\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:reproductor\ de\ audio\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:segundo_parcial\ Debug/activeLaunchMode=run
