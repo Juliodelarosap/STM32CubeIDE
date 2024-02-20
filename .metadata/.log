@@ -1,0 +1,39 @@
+!SESSION 2024-02-20 16:38:44.559 -----------------------------------------------
+eclipse.buildId=Version 1.14.1
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_DO
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-02-20 16:39:27.991
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-02-20 16:39:28.001
+!MESSAGE Log4j2 initialized with config file C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-02-20 16:39:33.617
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:40:57.362
+!MESSAGE Indexed 'parcial' (28 sources, 120 headers) in 6.67 sec: 12,485 declarations; 79,754 references; 2 unresolved inclusions; 49 syntax errors; 188 unresolved names (0.2%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:40:59.975
+!MESSAGE Indexed 'calculadora' (25 sources, 116 headers) in 2.54 sec: 10,576 declarations; 49,384 references; 2 unresolved inclusions; 49 syntax errors; 188 unresolved names (0.31%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:41:01.829
+!MESSAGE Indexed 'ProyectoFinal_Microcontroladores' (24 sources, 114 headers) in 1.79 sec: 10,215 declarations; 47,080 references; 2 unresolved inclusions; 49 syntax errors; 188 unresolved names (0.33%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:41:04.018
+!MESSAGE Indexed 'osiloscopio_micro' (28 sources, 125 headers) in 2.13 sec: 13,280 declarations; 80,368 references; 2 unresolved inclusions; 49 syntax errors; 188 unresolved names (0.2%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:41:05.826
+!MESSAGE Indexed 'matrizstm32' (24 sources, 114 headers) in 1.76 sec: 10,209 declarations; 46,992 references; 2 unresolved inclusions; 49 syntax errors; 188 unresolved names (0.33%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:41:07.585
+!MESSAGE Indexed 'micro2023' (25 sources, 116 headers) in 1.72 sec: 10,573 declarations; 48,785 references; 2 unresolved inclusions; 51 syntax errors; 195 unresolved names (0.33%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:41:09.394
+!MESSAGE Indexed 'asignacion_2' (28 sources, 120 headers) in 1.76 sec: 11,913 declarations; 70,933 references; 2 unresolved inclusions; 49 syntax errors; 188 unresolved names (0.23%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2024-02-20 16:41:11.676
+!MESSAGE Indexed 'segundo_parcial' (27 sources, 122 headers) in 2.24 sec: 12,645 declarations; 79,741 references; 2 unresolved inclusions; 49 syntax errors; 189 unresolved names (0.2%)
