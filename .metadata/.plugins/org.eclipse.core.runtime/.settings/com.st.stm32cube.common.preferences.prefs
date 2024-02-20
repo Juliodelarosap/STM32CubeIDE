@@ -1,5 +1,3 @@
-DeviceConfigurationTool..FirmwareRepositoryPath=C\:\\Users\\thitt\\OneDrive\\Documentos\\GitHub\\STM32CubeIDE\\workspace_1.14.1
-DeviceConfigurationTool..UpdaterCheckInterval=5
-DeviceConfigurationTool..UpdaterDataRefresh=dataRefreshDataOnly
-DeviceConfigurationTool..UpdaterDataRefreshInterfval=3
+DeviceConfigurationTool.AskToSwitchToCubeMxPerspective=false
+DeviceConfigurationTool.SwitchToCubeMxPerspective=true
 eclipse.preferences.version=1
