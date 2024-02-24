@@ -1,0 +1,10 @@
+18:15:46 **** Incremental Build of configuration Debug for project BRINK ****
+make -j16 all 
+arm-none-eabi-size  BRINK.elf 
+   text	   data	    bss	    dec	    hex	filename
+  10268	     20	   1708	  11996	   2edc	BRINK.elf
+Finished building: default.size.stdout
+ 
+
+18:15:47 Build Finished. 0 errors, 0 warnings. (took 319ms)
+
