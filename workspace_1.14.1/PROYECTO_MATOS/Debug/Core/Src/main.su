@@ -1,0 +1,12 @@
+../Core/Src/main.c:66:6:p1_derecha	8	static
+../Core/Src/main.c:69:6:p1_izquierda	8	static
+../Core/Src/main.c:72:6:stop	8	static
+../Core/Src/main.c:80:6:p2_derecha	8	static
+../Core/Src/main.c:83:6:p2_izquierda	8	static
+../Core/Src/main.c:96:5:main	8	static
+../Core/Src/main.c:187:6:SystemClock_Config	120	static
+../Core/Src/main.c:234:13:MX_ADC1_Init	32	static
+../Core/Src/main.c:291:13:MX_USART2_UART_Init	8	static
+../Core/Src/main.c:324:13:MX_DMA_Init	16	static
+../Core/Src/main.c:342:13:MX_GPIO_Init	48	static
+../Core/Src/main.c:392:6:Error_Handler	4	static,ignoring_inline_asm
