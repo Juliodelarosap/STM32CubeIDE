@@ -72,78 +72,79 @@ void medicion(){
 	Volt =(medida/4096.0)*voltaje;
 }
 //SETEO INICIAL DEL SISTEMA
-void seteo_sistem(){
-	    X_derecha();
-		HAL_Delay(30000);
-		stop();
-		X1_izquierda();
-		HAL_Delay(9000);
-		stop();
+void setup_system() {
+    move_X_right();
+    HAL_Delay(7000);
+    stop();
+    move_X_left();
+    HAL_Delay(7000);
+    stop();
 
-		Y_derecha();
-		HAL_Delay(30000);
-		stop();
-		Y1_izquierda();
-		HAL_Delay(9000);
-		stop();
-}
-// FUNCION PARA EL MOV EJE X
-void X_derecha(){
-	HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 1);
-}
-void X1_izquierda(){
-	HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 1);
-}
-//FUNCION MOV EJE Y
-void Y_derecha()
-{
-	HAL_GPIO_WritePin(P2_R_GPIO_Port, P2_R_Pin, 1);
-}
-void Y1_izquierda()
-{
-	HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 1);
-}
-//FUNCION DE PARADA DE LOS EJES
-void stop(){
-	HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 0);
-	HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 0);
-	HAL_GPIO_WritePin(P2_R_GPIO_Port, P2_R_Pin, 0);
-	HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 0);
+    move_Y_right();
+    HAL_Delay(9000);
+    stop();
+    move_Y_left();
+    HAL_Delay(13000);
+    stop();
 }
 
-//FUNCION GENERAL PARA PRUEBAS
-void mov(){
-
-	  if(!HAL_GPIO_ReadPin(btn_GPIO_Port, btn_Pin)){
-		  count++;
-		  HAL_Delay(600);
-	  }
-
-
-	  if(count>=5){
-		  count=0;
-	  }
-
-	  if (count == 1){
-		  X_derecha();
-
-
-	  }
-	  else if(count == 2){
-		  Y_derecha();
-
-
-	  }else if(count == 3){
-		  X1_izquierda();
-	  }
-	  else if(count ==4){
-		  Y1_izquierda();
-	  }
-	  else if(count ==5){
-		  stop();
-	  }
+// FUNCION PARA EL MOVIMIENTO DEL EJE X
+void move_X_right() {
+    HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 1);
 }
 
+void move_X_left() {
+    HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 1);
+}
+
+// FUNCION PARA EL MOVIMIENTO DEL EJE Y
+void move_Y_right() {
+    HAL_GPIO_WritePin(P2_R_GPIO_Port, P2_R_Pin, 1);
+}
+
+void move_Y_left() {
+    HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 1);
+}
+
+// FUNCION PARA DETENER LOS EJES
+void stop() {
+    HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 0);
+    HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 0);
+    HAL_GPIO_WritePin(P2_R_GPIO_Port, P2_R_Pin, 0);
+    HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 0);
+}
+
+// FUNCION GENERAL PARA PRUEBAS
+void test_movement() {
+    if (!HAL_GPIO_ReadPin(btn_GPIO_Port, btn_Pin)) {
+        count++;
+        HAL_Delay(600);
+    }
+
+    if (count >= 5) {
+        count = 0;
+    }
+
+    switch (count) {
+        case 1:
+            move_X_right();
+            break;
+        case 2:
+            move_Y_right();
+            break;
+        case 3:
+            move_X_left();
+            break;
+        case 4:
+            move_Y_left();
+            break;
+        case 5:
+            stop();
+            break;
+        default:
+            break;
+    }
+}
 
 /* USER CODE END 0 */
 

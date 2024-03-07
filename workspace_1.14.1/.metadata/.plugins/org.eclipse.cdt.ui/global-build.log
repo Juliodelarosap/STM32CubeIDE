@@ -1,174 +1,243 @@
-14:48:21 **** Incremental Build of configuration Debug for project 001HELLOWORLD ****
+20:48:59 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F302R8Tx -DSTM32F3 -DNUCLEO_F302R8 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
-arm-none-eabi-gcc -o "001HELLOWORLD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\001HELLOWORLD\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="001HELLOWORLD.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 001HELLOWORLD.elf
- 
-arm-none-eabi-size  001HELLOWORLD.elf 
-arm-none-eabi-objdump -h -S 001HELLOWORLD.elf  > "001HELLOWORLD.list"
-   text	   data	    bss	    dec	    hex	filename
-   3272	    100	   1900	   5272	   1498	001HELLOWORLD.elf
-Finished building: default.size.stdout
- 
-Finished building: 001HELLOWORLD.list
- 
-19:56:43 **** Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o"
-arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32f302r8tx.d" -MT"Core/Startup/startup_stm32f302r8tx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32f302r8tx.o" "../Core/Startup/startup_stm32f302r8tx.s"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_hal_msp.d" -MT"Core/Src/stm32f3xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_it.d" -MT"Core/Src/stm32f3xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_it.o"
-arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
-arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
-arm-none-eabi-gcc "../Core/Src/system_stm32f3xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32f3xx.d" -MT"Core/Src/system_stm32f3xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32f3xx.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+../Core/Src/main.c: In function 'setup_system':
+../Core/Src/main.c:76:5: warning: implicit declaration of function 'move_X_right' [-Wimplicit-function-declaration]
+   76 |     move_X_right();
+      |     ^~~~~~~~~~~~
+../Core/Src/main.c:78:5: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
+   78 |     stop();
+      |     ^~~~
+../Core/Src/main.c:79:5: warning: implicit declaration of function 'move_X_left' [-Wimplicit-function-declaration]
+   79 |     move_X_left();
+      |     ^~~~~~~~~~~
+../Core/Src/main.c:83:5: warning: implicit declaration of function 'move_Y_right' [-Wimplicit-function-declaration]
+   83 |     move_Y_right();
+      |     ^~~~~~~~~~~~
+../Core/Src/main.c:86:5: warning: implicit declaration of function 'move_Y_left' [-Wimplicit-function-declaration]
+   86 |     move_Y_left();
+      |     ^~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:92:6: warning: conflicting types for 'move_X_right'; have 'void()'
+   92 | void move_X_right() {
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:76:5: note: previous implicit declaration of 'move_X_right' with type 'void()'
+   76 |     move_X_right();
+      |     ^~~~~~~~~~~~
+../Core/Src/main.c:96:6: warning: conflicting types for 'move_X_left'; have 'void()'
+   96 | void move_X_left() {
+      |      ^~~~~~~~~~~
+../Core/Src/main.c:79:5: note: previous implicit declaration of 'move_X_left' with type 'void()'
+   79 |     move_X_left();
+      |     ^~~~~~~~~~~
+../Core/Src/main.c:101:6: warning: conflicting types for 'move_Y_right'; have 'void()'
+  101 | void move_Y_right() {
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:83:5: note: previous implicit declaration of 'move_Y_right' with type 'void()'
+   83 |     move_Y_right();
+      |     ^~~~~~~~~~~~
+../Core/Src/main.c:105:6: warning: conflicting types for 'move_Y_left'; have 'void()'
+  105 | void move_Y_left() {
+      |      ^~~~~~~~~~~
+../Core/Src/main.c:86:5: note: previous implicit declaration of 'move_Y_left' with type 'void()'
+   86 |     move_Y_left();
+      |     ^~~~~~~~~~~
+../Core/Src/main.c:110:6: warning: conflicting types for 'stop'; have 'void()'
+  110 | void stop() {
+      |      ^~~~
+../Core/Src/main.c:78:5: note: previous implicit declaration of 'stop' with type 'void()'
+   78 |     stop();
+      |     ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:185:9: warning: implicit declaration of function 'seteo_sistem'; did you mean 'setup_system'? [-Wimplicit-function-declaration]
+  185 |         seteo_sistem();
+      |         ^~~~~~~~~~~~
+      |         setup_system
+arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/thitt/OneDrive/Documentos/GitHub/STM32CubeIDE/workspace_1.14.1/PROYECTO_MATOS/Debug/../Core/Src/main.c:185: undefined reference to `seteo_sistem'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: PROYECTO_MATOS.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+20:49:26 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'seteo_sistem':
+../Core/Src/main.c:76:13: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
+   76 |             X_derecha();
+      |             ^~~~~~~~~
+../Core/Src/main.c:78:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
+   78 |                 stop();
+      |                 ^~~~
+../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
+   79 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:83:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
+   83 |                 Y_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:86:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
+   86 |                 Y1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:91:6: warning: conflicting types for 'X_derecha'; have 'void()'
+   91 | void X_derecha(){
+      |      ^~~~~~~~~
+../Core/Src/main.c:76:13: note: previous implicit declaration of 'X_derecha' with type 'void()'
+   76 |             X_derecha();
+      |             ^~~~~~~~~
+../Core/Src/main.c:94:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
+   94 | void X1_izquierda(){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
+   79 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:98:6: warning: conflicting types for 'Y_derecha'; have 'void()'
+   98 | void Y_derecha()
+      |      ^~~~~~~~~
+../Core/Src/main.c:83:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
+   83 |                 Y_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:102:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
+  102 | void Y1_izquierda()
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:86:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
+   86 |                 Y1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:107:6: warning: conflicting types for 'stop'; have 'void()'
+  107 | void stop(){
+      |      ^~~~
+../Core/Src/main.c:78:17: note: previous implicit declaration of 'stop' with type 'void()'
+   78 |                 stop();
+      |                 ^~~~
+arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PROYECTO_MATOS.elf
  
 arm-none-eabi-size  PROYECTO_MATOS.elf 
 arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  10192	     20	   1708	  11920	   2e90	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-19:57:08 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  10380	     20	   1708	  12108	   2f4c	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-20:05:10 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_hal_msp.d" -MT"Core/Src/stm32f3xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_it.d" -MT"Core/Src/stm32f3xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_it.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  10480	     20	   1708	  12208	   2fb0	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-20:06:56 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  10480	     20	   1708	  12208	   2fb0	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-20:13:35 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_hal_msp.d" -MT"Core/Src/stm32f3xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_it.d" -MT"Core/Src/stm32f3xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_it.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  10488	     20	   1708	  12216	   2fb8	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-20:27:25 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  10648	     20	   1708	  12376	   3058	PROYECTO_MATOS.elf
+  38544	    476	   2196	  41216	   a100	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
  
 Finished building: PROYECTO_MATOS.list
  
-20:30:34 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+20:54:44 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+../Core/Src/main.c: In function 'seteo_sistem':
+../Core/Src/main.c:76:13: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
+   76 |             X_derecha();
+      |             ^~~~~~~~~
+../Core/Src/main.c:78:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
+   78 |                 stop();
+      |                 ^~~~
+../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
+   79 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:83:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
+   83 |                 Y_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:86:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
+   86 |                 Y1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:91:6: warning: conflicting types for 'X_derecha'; have 'void()'
+   91 | void X_derecha(){
+      |      ^~~~~~~~~
+../Core/Src/main.c:76:13: note: previous implicit declaration of 'X_derecha' with type 'void()'
+   76 |             X_derecha();
+      |             ^~~~~~~~~
+../Core/Src/main.c:94:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
+   94 | void X1_izquierda(){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
+   79 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:98:6: warning: conflicting types for 'Y_derecha'; have 'void()'
+   98 | void Y_derecha()
+      |      ^~~~~~~~~
+../Core/Src/main.c:83:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
+   83 |                 Y_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:102:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
+  102 | void Y1_izquierda()
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:86:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
+   86 |                 Y1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:107:6: warning: conflicting types for 'stop'; have 'void()'
+  107 | void stop(){
+      |      ^~~~
+../Core/Src/main.c:78:17: note: previous implicit declaration of 'stop' with type 'void()'
+   78 |                 stop();
+      |                 ^~~~
+arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PROYECTO_MATOS.elf
  
 arm-none-eabi-size  PROYECTO_MATOS.elf 
 arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  10664	     20	   1708	  12392	   3068	PROYECTO_MATOS.elf
+  38544	    476	   2196	  41216	   a100	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
  
 Finished building: PROYECTO_MATOS.list
  
-20:46:02 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+20:57:31 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_adc_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.o"
-arm-none-eabi-gcc "../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.d" -MT"Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_hal_msp.d" -MT"Core/Src/stm32f3xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_it.d" -MT"Core/Src/stm32f3xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_it.o"
-arm-none-eabi-gcc "../Core/Src/system_stm32f3xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32f3xx.d" -MT"Core/Src/system_stm32f3xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32f3xx.o"
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+../Core/Src/main.c: In function 'seteo_sistem':
+../Core/Src/main.c:76:13: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
+   76 |             X_derecha();
+      |             ^~~~~~~~~
+../Core/Src/main.c:78:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
+   78 |                 stop();
+      |                 ^~~~
+../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
+   79 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:83:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
+   83 |                 Y_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:86:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
+   86 |                 Y1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:91:6: warning: conflicting types for 'X_derecha'; have 'void()'
+   91 | void X_derecha(){
+      |      ^~~~~~~~~
+../Core/Src/main.c:76:13: note: previous implicit declaration of 'X_derecha' with type 'void()'
+   76 |             X_derecha();
+      |             ^~~~~~~~~
+../Core/Src/main.c:94:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
+   94 | void X1_izquierda(){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
+   79 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:98:6: warning: conflicting types for 'Y_derecha'; have 'void()'
+   98 | void Y_derecha()
+      |      ^~~~~~~~~
+../Core/Src/main.c:83:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
+   83 |                 Y_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:102:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
+  102 | void Y1_izquierda()
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:86:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
+   86 |                 Y1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:107:6: warning: conflicting types for 'stop'; have 'void()'
+  107 | void stop(){
+      |      ^~~~
+../Core/Src/main.c:78:17: note: previous implicit declaration of 'stop' with type 'void()'
+   78 |                 stop();
+      |                 ^~~~
+arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PROYECTO_MATOS.elf
  
 arm-none-eabi-size  PROYECTO_MATOS.elf 
 arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  16048	     20	   1860	  17928	   4608	PROYECTO_MATOS.elf
+  38544	    476	   2196	  41216	   a100	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
  
 Finished building: PROYECTO_MATOS.list

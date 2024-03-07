@@ -31,7 +31,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define voltaje 5
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,49 +61,14 @@ static void MX_ADC1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// VARIABLES DEL SISTEMA
+
 uint32_t medida = 0;
-int count =0;
-float Volt =0.00;
-
-//MEDICION DE VOLTAJES LDR O DIVISORES
-
-void medicion(){
-	Volt =(medida/4096.0)*voltaje;
-}
-//SETEO INICIAL DEL SISTEMA
-void seteo_sistem(){
-	    X_derecha();
-		HAL_Delay(30000);
-		stop();
-		X1_izquierda();
-		HAL_Delay(9000);
-		stop();
-
-		Y_derecha();
-		HAL_Delay(30000);
-		stop();
-		Y1_izquierda();
-		HAL_Delay(9000);
-		stop();
-}
-// FUNCION PARA EL MOV EJE X
-void X_derecha(){
+void p1_derecha(){
 	HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 1);
 }
-void X1_izquierda(){
+void p1_izquierda(){
 	HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 1);
 }
-//FUNCION MOV EJE Y
-void Y_derecha()
-{
-	HAL_GPIO_WritePin(P2_R_GPIO_Port, P2_R_Pin, 1);
-}
-void Y1_izquierda()
-{
-	HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 1);
-}
-//FUNCION DE PARADA DE LOS EJES
 void stop(){
 	HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 0);
 	HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 0);
@@ -111,7 +76,13 @@ void stop(){
 	HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 0);
 }
 
-//FUNCION GENERAL PARA PRUEBAS
+
+void p2_derecha(){
+	HAL_GPIO_WritePin(P2_R_GPIO_Port, P2_R_Pin, 1);
+}
+void p2_izquierda(){
+	HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 1);
+}
 void mov(){
 
 	  if(!HAL_GPIO_ReadPin(btn_GPIO_Port, btn_Pin)){
@@ -125,26 +96,27 @@ void mov(){
 	  }
 
 	  if (count == 1){
-		  X_derecha();
+		  p1_derecha();
 
 
 	  }
 	  else if(count == 2){
-		  Y_derecha();
+		  p2_derecha();
 
 
 	  }else if(count == 3){
-		  X1_izquierda();
+		  p1_izquierda();
 	  }
 	  else if(count ==4){
-		  Y1_izquierda();
+		  p2_izquierda();
 	  }
 	  else if(count ==5){
 		  stop();
 	  }
 }
 
-
+int count =0;
+float Volt =0.00;
 /* USER CODE END 0 */
 
 /**
@@ -181,7 +153,19 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 	HAL_ADC_Start_DMA(&hadc1, &medida, 1);
-	seteo_sistem();
+	p1_derecha();
+	HAL_Delay(7000);
+	stop();
+	p1_izquierda();
+	HAL_Delay(7000);
+	stop();
+
+	p2_derecha();
+	HAL_Delay(9000);
+	stop();
+	p2_izquierda();
+	HAL_Delay(13000);
+	stop();
 
 
   /* USER CODE END 2 */
@@ -190,8 +174,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  medicion();
-//	  mov();
+	  mov();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

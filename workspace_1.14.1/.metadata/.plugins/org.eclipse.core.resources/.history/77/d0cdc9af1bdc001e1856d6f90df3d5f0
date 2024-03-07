@@ -74,24 +74,24 @@ void medicion(){
 //SETEO INICIAL DEL SISTEMA
 void seteo_sistem(){
 	    X_derecha();
-		HAL_Delay(30000);
+		HAL_Delay(7000);
 		stop();
-		X1_izquierda();
-		HAL_Delay(9000);
+		X_izquierda();
+		HAL_Delay(7000);
 		stop();
 
 		Y_derecha();
-		HAL_Delay(30000);
-		stop();
-		Y1_izquierda();
 		HAL_Delay(9000);
+		stop();
+		Y_izquierda();
+		HAL_Delay(13000);
 		stop();
 }
 // FUNCION PARA EL MOV EJE X
 void X_derecha(){
 	HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 1);
 }
-void X1_izquierda(){
+void X_izquierda(){
 	HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 1);
 }
 //FUNCION MOV EJE Y
@@ -99,7 +99,7 @@ void Y_derecha()
 {
 	HAL_GPIO_WritePin(P2_R_GPIO_Port, P2_R_Pin, 1);
 }
-void Y1_izquierda()
+void Y_izquierda()
 {
 	HAL_GPIO_WritePin(P2_L_GPIO_Port, P2_L_Pin, 1);
 }
@@ -125,19 +125,19 @@ void mov(){
 	  }
 
 	  if (count == 1){
-		  X_derecha();
+		  p1_derecha();
 
 
 	  }
 	  else if(count == 2){
-		  Y_derecha();
+		  p2_derecha();
 
 
 	  }else if(count == 3){
-		  X1_izquierda();
+		  p1_izquierda();
 	  }
 	  else if(count ==4){
-		  Y1_izquierda();
+		  p2_izquierda();
 	  }
 	  else if(count ==5){
 		  stop();
