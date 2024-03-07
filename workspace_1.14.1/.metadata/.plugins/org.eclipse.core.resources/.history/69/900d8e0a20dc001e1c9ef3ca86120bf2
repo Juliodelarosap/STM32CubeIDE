@@ -68,17 +68,8 @@ float Volt =0.00;
 
 //MEDICION DE VOLTAJES LDR O DIVISORES
 
-void medicion_movimiento_sistema(){
+void medicion(){
 	Volt =(medida/4096.0)*voltaje;
-
-
-	if (Volt >= 1.0 && Volt <= 2.0 ){
-		X_derecha();
-	}
-	else{
-		X1_izquierda();
-		stop();
-	}
 }
 //SETEO INICIAL DEL SISTEMA
 void seteo_sistem(){
@@ -154,8 +145,6 @@ void mov(){
 }
 
 
-
-
 /* USER CODE END 0 */
 
 /**
@@ -201,7 +190,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  medicion_movimiento_sistema();
+	  medicion();
 //	  mov();
     /* USER CODE END WHILE */
 

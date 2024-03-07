@@ -1,113 +1,53 @@
-20:48:59 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+21:14:28 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'setup_system':
-../Core/Src/main.c:76:5: warning: implicit declaration of function 'move_X_right' [-Wimplicit-function-declaration]
-   76 |     move_X_right();
-      |     ^~~~~~~~~~~~
-../Core/Src/main.c:78:5: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   78 |     stop();
-      |     ^~~~
-../Core/Src/main.c:79:5: warning: implicit declaration of function 'move_X_left' [-Wimplicit-function-declaration]
-   79 |     move_X_left();
-      |     ^~~~~~~~~~~
-../Core/Src/main.c:83:5: warning: implicit declaration of function 'move_Y_right' [-Wimplicit-function-declaration]
-   83 |     move_Y_right();
-      |     ^~~~~~~~~~~~
-../Core/Src/main.c:86:5: warning: implicit declaration of function 'move_Y_left' [-Wimplicit-function-declaration]
-   86 |     move_Y_left();
-      |     ^~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:92:6: warning: conflicting types for 'move_X_right'; have 'void()'
-   92 | void move_X_right() {
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:76:5: note: previous implicit declaration of 'move_X_right' with type 'void()'
-   76 |     move_X_right();
-      |     ^~~~~~~~~~~~
-../Core/Src/main.c:96:6: warning: conflicting types for 'move_X_left'; have 'void()'
-   96 | void move_X_left() {
-      |      ^~~~~~~~~~~
-../Core/Src/main.c:79:5: note: previous implicit declaration of 'move_X_left' with type 'void()'
-   79 |     move_X_left();
-      |     ^~~~~~~~~~~
-../Core/Src/main.c:101:6: warning: conflicting types for 'move_Y_right'; have 'void()'
-  101 | void move_Y_right() {
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:83:5: note: previous implicit declaration of 'move_Y_right' with type 'void()'
-   83 |     move_Y_right();
-      |     ^~~~~~~~~~~~
-../Core/Src/main.c:105:6: warning: conflicting types for 'move_Y_left'; have 'void()'
-  105 | void move_Y_left() {
-      |      ^~~~~~~~~~~
-../Core/Src/main.c:86:5: note: previous implicit declaration of 'move_Y_left' with type 'void()'
-   86 |     move_Y_left();
-      |     ^~~~~~~~~~~
-../Core/Src/main.c:110:6: warning: conflicting types for 'stop'; have 'void()'
-  110 | void stop() {
-      |      ^~~~
-../Core/Src/main.c:78:5: note: previous implicit declaration of 'stop' with type 'void()'
-   78 |     stop();
-      |     ^~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:185:9: warning: implicit declaration of function 'seteo_sistem'; did you mean 'setup_system'? [-Wimplicit-function-declaration]
-  185 |         seteo_sistem();
-      |         ^~~~~~~~~~~~
-      |         setup_system
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.100.202309141235/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
-C:/Users/thitt/OneDrive/Documentos/GitHub/STM32CubeIDE/workspace_1.14.1/PROYECTO_MATOS/Debug/../Core/Src/main.c:185: undefined reference to `seteo_sistem'
-collect2.exe: error: ld returned 1 exit status
-make: *** [makefile:64: PROYECTO_MATOS.elf] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
-20:49:26 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:76:13: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:78:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   78 |                 stop();
-      |                 ^~~~
+../Core/Src/main.c: In function 'medicion_movimiento_sistema':
+../Core/Src/main.c:76:17: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
+   76 |                 X_derecha();
+      |                 ^~~~~~~~~
 ../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
    79 |                 X1_izquierda();
       |                 ^~~~~~~~~~~~
-../Core/Src/main.c:83:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-   83 |                 Y_derecha();
+../Core/Src/main.c:80:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
+   80 |                 stop();
+      |                 ^~~~
+../Core/Src/main.c: In function 'seteo_sistem':
+../Core/Src/main.c:92:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
+   92 |                 Y_derecha();
       |                 ^~~~~~~~~
-../Core/Src/main.c:86:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-   86 |                 Y1_izquierda();
+../Core/Src/main.c:95:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
+   95 |                 Y1_izquierda();
       |                 ^~~~~~~~~~~~
 ../Core/Src/main.c: At top level:
-../Core/Src/main.c:91:6: warning: conflicting types for 'X_derecha'; have 'void()'
-   91 | void X_derecha(){
+../Core/Src/main.c:100:6: warning: conflicting types for 'X_derecha'; have 'void()'
+  100 | void X_derecha(){
       |      ^~~~~~~~~
-../Core/Src/main.c:76:13: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:94:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-   94 | void X1_izquierda(){
+../Core/Src/main.c:76:17: note: previous implicit declaration of 'X_derecha' with type 'void()'
+   76 |                 X_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:103:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
+  103 | void X1_izquierda(){
       |      ^~~~~~~~~~~~
 ../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
    79 |                 X1_izquierda();
       |                 ^~~~~~~~~~~~
-../Core/Src/main.c:98:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-   98 | void Y_derecha()
+../Core/Src/main.c:107:6: warning: conflicting types for 'Y_derecha'; have 'void()'
+  107 | void Y_derecha()
       |      ^~~~~~~~~
-../Core/Src/main.c:83:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-   83 |                 Y_derecha();
+../Core/Src/main.c:92:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
+   92 |                 Y_derecha();
       |                 ^~~~~~~~~
-../Core/Src/main.c:102:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  102 | void Y1_izquierda()
+../Core/Src/main.c:111:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
+  111 | void Y1_izquierda()
       |      ^~~~~~~~~~~~
-../Core/Src/main.c:86:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-   86 |                 Y1_izquierda();
+../Core/Src/main.c:95:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
+   95 |                 Y1_izquierda();
       |                 ^~~~~~~~~~~~
-../Core/Src/main.c:107:6: warning: conflicting types for 'stop'; have 'void()'
-  107 | void stop(){
+../Core/Src/main.c:116:6: warning: conflicting types for 'stop'; have 'void()'
+  116 | void stop(){
       |      ^~~~
-../Core/Src/main.c:78:17: note: previous implicit declaration of 'stop' with type 'void()'
-   78 |                 stop();
+../Core/Src/main.c:80:17: note: previous implicit declaration of 'stop' with type 'void()'
+   80 |                 stop();
       |                 ^~~~
 arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: PROYECTO_MATOS.elf
@@ -115,130 +55,15 @@ Finished building target: PROYECTO_MATOS.elf
 arm-none-eabi-size  PROYECTO_MATOS.elf 
 arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  38544	    476	   2196	  41216	   a100	PROYECTO_MATOS.elf
+  38600	    476	   2196	  41272	   a138	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
  
 Finished building: PROYECTO_MATOS.list
  
-20:54:44 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+21:14:37 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:76:13: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:78:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   78 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:83:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-   83 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:86:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-   86 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:91:6: warning: conflicting types for 'X_derecha'; have 'void()'
-   91 | void X_derecha(){
-      |      ^~~~~~~~~
-../Core/Src/main.c:76:13: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:94:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-   94 | void X1_izquierda(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:98:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-   98 | void Y_derecha()
-      |      ^~~~~~~~~
-../Core/Src/main.c:83:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-   83 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:102:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  102 | void Y1_izquierda()
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:86:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-   86 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:107:6: warning: conflicting types for 'stop'; have 'void()'
-  107 | void stop(){
-      |      ^~~~
-../Core/Src/main.c:78:17: note: previous implicit declaration of 'stop' with type 'void()'
-   78 |                 stop();
-      |                 ^~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
 arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  38544	    476	   2196	  41216	   a100	PROYECTO_MATOS.elf
+  38600	    476	   2196	  41272	   a138	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-20:57:31 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:76:13: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:78:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   78 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:83:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-   83 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:86:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-   86 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:91:6: warning: conflicting types for 'X_derecha'; have 'void()'
-   91 | void X_derecha(){
-      |      ^~~~~~~~~
-../Core/Src/main.c:76:13: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:94:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-   94 | void X1_izquierda(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:98:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-   98 | void Y_derecha()
-      |      ^~~~~~~~~
-../Core/Src/main.c:83:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-   83 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:102:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  102 | void Y1_izquierda()
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:86:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-   86 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:107:6: warning: conflicting types for 'stop'; have 'void()'
-  107 | void stop(){
-      |      ^~~~
-../Core/Src/main.c:78:17: note: previous implicit declaration of 'stop' with type 'void()'
-   78 |                 stop();
-      |                 ^~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38544	    476	   2196	  41216	   a100	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
  

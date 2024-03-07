@@ -1,64 +1,10 @@
-20:57:31 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+21:14:37 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:76:13: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:78:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   78 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:83:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-   83 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:86:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-   86 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:91:6: warning: conflicting types for 'X_derecha'; have 'void()'
-   91 | void X_derecha(){
-      |      ^~~~~~~~~
-../Core/Src/main.c:76:13: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   76 |             X_derecha();
-      |             ^~~~~~~~~
-../Core/Src/main.c:94:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-   94 | void X1_izquierda(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:98:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-   98 | void Y_derecha()
-      |      ^~~~~~~~~
-../Core/Src/main.c:83:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-   83 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:102:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  102 | void Y1_izquierda()
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:86:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-   86 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:107:6: warning: conflicting types for 'stop'; have 'void()'
-  107 | void stop(){
-      |      ^~~~
-../Core/Src/main.c:78:17: note: previous implicit declaration of 'stop' with type 'void()'
-   78 |                 stop();
-      |                 ^~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
 arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  38544	    476	   2196	  41216	   a100	PROYECTO_MATOS.elf
+  38600	    476	   2196	  41272	   a138	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
  
-Finished building: PROYECTO_MATOS.list
- 
 
-20:57:33 Build Finished. 0 errors, 10 warnings. (took 2s.57ms)
+21:14:38 Build Finished. 0 errors, 0 warnings. (took 1s.165ms)
 
