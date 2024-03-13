@@ -1,10 +1,10 @@
-21:14:37 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+22:05:14 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
 arm-none-eabi-size  PROYECTO_MATOS.elf 
    text	   data	    bss	    dec	    hex	filename
-  38600	    476	   2196	  41272	   a138	PROYECTO_MATOS.elf
+  38784	    476	   2228	  41488	   a210	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
  
 
-21:14:38 Build Finished. 0 errors, 0 warnings. (took 1s.165ms)
+22:05:14 Build Finished. 0 errors, 0 warnings. (took 435ms)
 
