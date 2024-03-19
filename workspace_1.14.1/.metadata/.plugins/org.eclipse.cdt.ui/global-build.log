@@ -1,392 +1,4 @@
-20:48:34 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:194:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  194 |         HAL_ADC_Start_DMA(&hadc1, &medida, 1);
-      |                                   ^~~~~~~
-      |                                   |
-      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
-In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
-                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
-  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
-      |                                                                    ~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38280	    476	   2204	  40960	   a000	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-20:48:40 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-   text	   data	    bss	    dec	    hex	filename
-  38280	    476	   2204	  40960	   a000	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-20:49:54 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:194:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  194 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
-      |                                   ^~~~~~~
-      |                                   |
-      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
-In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
-                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
-  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
-      |                                                                    ~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38280	    476	   2204	  40960	   a000	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-21:49:20 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:194:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  194 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
-      |                                   ^~~~~~~
-      |                                   |
-      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
-In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
-                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
-  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
-      |                                                                    ~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38288	    476	   2204	  40968	   a008	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-21:51:21 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'medicion_movimiento_sistema':
-../Core/Src/main.c:76:17: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   76 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:80:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   80 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:92:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-   92 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:95:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-   95 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:100:6: warning: conflicting types for 'X_derecha'; have 'void()'
-  100 | void X_derecha(){
-      |      ^~~~~~~~~
-../Core/Src/main.c:76:17: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   76 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:103:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-  103 | void X1_izquierda(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:107:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-  107 | void Y_derecha()
-      |      ^~~~~~~~~
-../Core/Src/main.c:92:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-   92 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:111:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  111 | void Y1_izquierda()
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:95:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-   95 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:116:6: warning: conflicting types for 'stop'; have 'void()'
-  116 | void stop(){
-      |      ^~~~
-../Core/Src/main.c:80:17: note: previous implicit declaration of 'stop' with type 'void()'
-   80 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:194:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  194 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
-      |                                   ^~~~~~~
-      |                                   |
-      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
-In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
-                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
-  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
-      |                                                                    ~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38288	    476	   2204	  40968	   a008	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-21:51:45 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'medicion_movimiento_sistema':
-../Core/Src/main.c:76:17: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   76 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:79:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:80:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   80 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:92:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-   92 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:95:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-   95 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:100:6: warning: conflicting types for 'X_derecha'; have 'void()'
-  100 | void X_derecha(){
-      |      ^~~~~~~~~
-../Core/Src/main.c:76:17: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   76 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:103:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-  103 | void X1_izquierda(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:79:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
-   79 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:107:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-  107 | void Y_derecha()
-      |      ^~~~~~~~~
-../Core/Src/main.c:92:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-   92 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:111:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  111 | void Y1_izquierda()
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:95:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-   95 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:116:6: warning: conflicting types for 'stop'; have 'void()'
-  116 | void stop(){
-      |      ^~~~
-../Core/Src/main.c:80:17: note: previous implicit declaration of 'stop' with type 'void()'
-   80 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:194:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  194 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
-      |                                   ^~~~~~~
-      |                                   |
-      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
-In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
-                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
-  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
-      |                                                                    ~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38544	    476	   2212	  41232	   a110	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-21:53:14 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'medicion_movimiento_sistema':
-../Core/Src/main.c:81:17: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   81 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:84:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
-   84 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:85:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   85 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:97:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-   97 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:100:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-  100 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:105:6: warning: conflicting types for 'X_derecha'; have 'void()'
-  105 | void X_derecha(){
-      |      ^~~~~~~~~
-../Core/Src/main.c:81:17: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   81 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:108:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-  108 | void X1_izquierda(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:84:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
-   84 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:112:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-  112 | void Y_derecha()
-      |      ^~~~~~~~~
-../Core/Src/main.c:97:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-   97 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:116:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  116 | void Y1_izquierda()
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:100:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-  100 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:121:6: warning: conflicting types for 'stop'; have 'void()'
-  121 | void stop(){
-      |      ^~~~
-../Core/Src/main.c:85:17: note: previous implicit declaration of 'stop' with type 'void()'
-   85 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:199:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  199 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
-      |                                   ^~~~~~~
-      |                                   |
-      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
-In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
-                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
-  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
-      |                                                                    ~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38720	    476	   2220	  41416	   a1c8	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-21:56:28 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'medicion_movimiento_sistema':
-../Core/Src/main.c:81:17: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
-   81 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:84:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
-   84 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:88:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   88 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:100:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-  100 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:103:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-  103 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c: At top level:
-../Core/Src/main.c:108:6: warning: conflicting types for 'X_derecha'; have 'void()'
-  108 | void X_derecha(){
-      |      ^~~~~~~~~
-../Core/Src/main.c:81:17: note: previous implicit declaration of 'X_derecha' with type 'void()'
-   81 |                 X_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:111:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-  111 | void X1_izquierda(){
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:84:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
-   84 |                 X1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:115:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-  115 | void Y_derecha()
-      |      ^~~~~~~~~
-../Core/Src/main.c:100:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-  100 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:119:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  119 | void Y1_izquierda()
-      |      ^~~~~~~~~~~~
-../Core/Src/main.c:103:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-  103 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:124:6: warning: conflicting types for 'stop'; have 'void()'
-  124 | void stop(){
-      |      ^~~~
-../Core/Src/main.c:88:17: note: previous implicit declaration of 'stop' with type 'void()'
-   88 |                 stop();
-      |                 ^~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:202:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  202 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
-      |                                   ^~~~~~~
-      |                                   |
-      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
-In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
-                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
-  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
-      |                                                                    ~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: PROYECTO_MATOS.elf
- 
-arm-none-eabi-size  PROYECTO_MATOS.elf 
-arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
-   text	   data	    bss	    dec	    hex	filename
-  38768	    476	   2220	  41464	   a1f8	PROYECTO_MATOS.elf
-Finished building: default.size.stdout
- 
-Finished building: PROYECTO_MATOS.list
- 
-21:57:59 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+18:33:36 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'medicion_movimiento_sistema':
@@ -396,50 +8,49 @@ arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -D
 ../Core/Src/main.c:86:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
    86 |                 X1_izquierda();
       |                 ^~~~~~~~~~~~
-../Core/Src/main.c:91:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
-   91 |                 stop();
+../Core/Src/main.c:90:25: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
+   90 |                         Y_derecha();
+      |                         ^~~~~~~~~
+../Core/Src/main.c:94:33: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
+   94 |                                 Y1_izquierda();
+      |                                 ^~~~~~~~~~~~
+../Core/Src/main.c:99:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
+   99 |                 stop();
       |                 ^~~~
-../Core/Src/main.c: In function 'seteo_sistem':
-../Core/Src/main.c:103:17: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
-  103 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:106:17: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
-  106 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
 ../Core/Src/main.c: At top level:
-../Core/Src/main.c:111:6: warning: conflicting types for 'X_derecha'; have 'void()'
-  111 | void X_derecha(){
+../Core/Src/main.c:119:6: warning: conflicting types for 'X_derecha'; have 'void(void)'
+  119 | void X_derecha(void){
       |      ^~~~~~~~~
-../Core/Src/main.c:82:17: note: previous implicit declaration of 'X_derecha' with type 'void()'
+../Core/Src/main.c:82:17: note: previous implicit declaration of 'X_derecha' with type 'void(void)'
    82 |                 X_derecha();
       |                 ^~~~~~~~~
-../Core/Src/main.c:114:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
-  114 | void X1_izquierda(){
+../Core/Src/main.c:122:6: warning: conflicting types for 'X1_izquierda'; have 'void(void)'
+  122 | void X1_izquierda(void){
       |      ^~~~~~~~~~~~
-../Core/Src/main.c:86:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
+../Core/Src/main.c:86:17: note: previous implicit declaration of 'X1_izquierda' with type 'void(void)'
    86 |                 X1_izquierda();
       |                 ^~~~~~~~~~~~
-../Core/Src/main.c:118:6: warning: conflicting types for 'Y_derecha'; have 'void()'
-  118 | void Y_derecha()
+../Core/Src/main.c:126:6: warning: conflicting types for 'Y_derecha'; have 'void()'
+  126 | void Y_derecha()
       |      ^~~~~~~~~
-../Core/Src/main.c:103:17: note: previous implicit declaration of 'Y_derecha' with type 'void()'
-  103 |                 Y_derecha();
-      |                 ^~~~~~~~~
-../Core/Src/main.c:122:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
-  122 | void Y1_izquierda()
+../Core/Src/main.c:90:25: note: previous implicit declaration of 'Y_derecha' with type 'void()'
+   90 |                         Y_derecha();
+      |                         ^~~~~~~~~
+../Core/Src/main.c:130:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
+  130 | void Y1_izquierda()
       |      ^~~~~~~~~~~~
-../Core/Src/main.c:106:17: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
-  106 |                 Y1_izquierda();
-      |                 ^~~~~~~~~~~~
-../Core/Src/main.c:127:6: warning: conflicting types for 'stop'; have 'void()'
-  127 | void stop(){
+../Core/Src/main.c:94:33: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
+   94 |                                 Y1_izquierda();
+      |                                 ^~~~~~~~~~~~
+../Core/Src/main.c:135:6: warning: conflicting types for 'stop'; have 'void()'
+  135 | void stop(){
       |      ^~~~
-../Core/Src/main.c:91:17: note: previous implicit declaration of 'stop' with type 'void()'
-   91 |                 stop();
+../Core/Src/main.c:99:17: note: previous implicit declaration of 'stop' with type 'void()'
+   99 |                 stop();
       |                 ^~~~
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:205:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
-  205 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
+../Core/Src/main.c:213:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+  213 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
       |                                   ^~~~~~~
       |                                   |
       |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
@@ -456,15 +67,82 @@ Finished building target: PROYECTO_MATOS.elf
 arm-none-eabi-size  PROYECTO_MATOS.elf 
 arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  38784	    476	   2228	  41488	   a210	PROYECTO_MATOS.elf
+  38936	    476	   2228	  41640	   a2a8	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
  
 Finished building: PROYECTO_MATOS.list
  
-22:05:14 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
+20:58:41 **** Incremental Build of configuration Debug for project PROYECTO_MATOS ****
 make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'medicion_movimiento_sistema':
+../Core/Src/main.c:82:17: warning: implicit declaration of function 'X_derecha' [-Wimplicit-function-declaration]
+   82 |                 X_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:86:17: warning: implicit declaration of function 'X1_izquierda' [-Wimplicit-function-declaration]
+   86 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:90:25: warning: implicit declaration of function 'Y_derecha' [-Wimplicit-function-declaration]
+   90 |                         Y_derecha();
+      |                         ^~~~~~~~~
+../Core/Src/main.c:94:33: warning: implicit declaration of function 'Y1_izquierda' [-Wimplicit-function-declaration]
+   94 |                                 Y1_izquierda();
+      |                                 ^~~~~~~~~~~~
+../Core/Src/main.c:99:17: warning: implicit declaration of function 'stop' [-Wimplicit-function-declaration]
+   99 |                 stop();
+      |                 ^~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:119:6: warning: conflicting types for 'X_derecha'; have 'void()'
+  119 | void X_derecha(){
+      |      ^~~~~~~~~
+../Core/Src/main.c:82:17: note: previous implicit declaration of 'X_derecha' with type 'void()'
+   82 |                 X_derecha();
+      |                 ^~~~~~~~~
+../Core/Src/main.c:122:6: warning: conflicting types for 'X1_izquierda'; have 'void()'
+  122 | void X1_izquierda(){
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:86:17: note: previous implicit declaration of 'X1_izquierda' with type 'void()'
+   86 |                 X1_izquierda();
+      |                 ^~~~~~~~~~~~
+../Core/Src/main.c:126:6: warning: conflicting types for 'Y_derecha'; have 'void()'
+  126 | void Y_derecha()
+      |      ^~~~~~~~~
+../Core/Src/main.c:90:25: note: previous implicit declaration of 'Y_derecha' with type 'void()'
+   90 |                         Y_derecha();
+      |                         ^~~~~~~~~
+../Core/Src/main.c:130:6: warning: conflicting types for 'Y1_izquierda'; have 'void()'
+  130 | void Y1_izquierda()
+      |      ^~~~~~~~~~~~
+../Core/Src/main.c:94:33: note: previous implicit declaration of 'Y1_izquierda' with type 'void()'
+   94 |                                 Y1_izquierda();
+      |                                 ^~~~~~~~~~~~
+../Core/Src/main.c:135:6: warning: conflicting types for 'stop'; have 'void()'
+  135 | void stop(){
+      |      ^~~~
+../Core/Src/main.c:99:17: note: previous implicit declaration of 'stop' with type 'void()'
+   99 |                 stop();
+      |                 ^~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:213:35: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+  213 |         HAL_ADC_Start_DMA(&hadc1, &medida, 4);
+      |                                   ^~~~~~~
+      |                                   |
+      |                                   uint32_t (*)[4] {aka long unsigned int (*)[4]}
+In file included from ../Core/Inc/stm32f3xx_hal_conf.h:219,
+                 from ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_adc.h:216:78: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint32_t (*)[4]' {aka 'long unsigned int (*)[4]'}
+  216 | HAL_StatusTypeDef       HAL_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t Length);
+      |                                                                    ~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "PROYECTO_MATOS.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\PROYECTO_MATOS\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="PROYECTO_MATOS.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: PROYECTO_MATOS.elf
+ 
 arm-none-eabi-size  PROYECTO_MATOS.elf 
+arm-none-eabi-objdump -h -S PROYECTO_MATOS.elf  > "PROYECTO_MATOS.list"
    text	   data	    bss	    dec	    hex	filename
-  38784	    476	   2228	  41488	   a210	PROYECTO_MATOS.elf
+  38936	    476	   2228	  41640	   a2a8	PROYECTO_MATOS.elf
 Finished building: default.size.stdout
+ 
+Finished building: PROYECTO_MATOS.list
  

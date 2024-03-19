@@ -116,10 +116,10 @@ void seteo_sistem(){
 		stop();
 }
 // FUNCION PARA EL MOV EJE X
-void X_derecha(){
+void X_derecha(void){
 	HAL_GPIO_WritePin(P1_R_GPIO_Port, P1_R_Pin, 1);
 }
-void X1_izquierda(){
+void X1_izquierda(void){
 	HAL_GPIO_WritePin(P1_L_GPIO_Port, P1_L_Pin, 1);
 }
 //FUNCION MOV EJE Y

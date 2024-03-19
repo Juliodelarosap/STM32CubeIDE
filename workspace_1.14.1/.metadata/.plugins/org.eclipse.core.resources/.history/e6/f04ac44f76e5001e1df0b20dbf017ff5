@@ -86,14 +86,6 @@ void medicion_movimiento_sistema(){
 		X1_izquierda();
 		arriba=2;
 	}
-	else if(Volt3>=1.0 && Volt3<=2.0){
-			Y_derecha();
-			arriba=3;
-		}
-	else if(Volt4>=1.0 && Volt4<=2.0){
-				Y1_izquierda();
-				arriba=4;
-			}
 	else{
 		arriba=0;
 		stop();
