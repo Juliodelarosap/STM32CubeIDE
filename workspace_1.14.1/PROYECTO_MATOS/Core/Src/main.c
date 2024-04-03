@@ -78,19 +78,19 @@ void medicion_movimiento_sistema(){
 	Volt3 =(medida[2]/4096.0)*voltaje;
 	Volt4 =(medida[3]/4096.0)*voltaje;
 
-	if (Volt >= 1.0 && Volt <= 2.0 ){
+	if (Volt >= 1.0 && Volt <= 3.0 ){
 		X_derecha();
 		arriba=1;
 	}
-	else if(Volt2>=1.0 && Volt2<=2.0){
+	else if(Volt2>=1.0 && Volt2<=3.0){
 		X1_izquierda();
 		arriba=2;
 	}
-	else if(Volt3>=1.0 && Volt3<=2.0){
+	else if(Volt3>=1.0 && Volt3<=3.0){
 			Y_derecha();
 			arriba=3;
 		}
-	else if(Volt4>=1.0 && Volt4<=2.0){
+	else if(Volt4>=1.0 && Volt4<=3.0){
 				Y1_izquierda();
 				arriba=4;
 			}

@@ -1152,7 +1152,7 @@ void medicion_movimiento_sistema(){
  8000dd4:	4a3e      	ldr	r2, [pc, #248]	; (8000ed0 <medicion_movimiento_sistema+0x1dc>)
  8000dd6:	6013      	str	r3, [r2, #0]
 
-	if (Volt >= 1.0 && Volt <= 2.0 ){
+	if (Volt >= 1.0 && Volt <= 3.0 ){
  8000dd8:	4b3a      	ldr	r3, [pc, #232]	; (8000ec4 <medicion_movimiento_sistema+0x1d0>)
  8000dda:	edd3 7a00 	vldr	s15, [r3]
  8000dde:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
@@ -1161,7 +1161,7 @@ void medicion_movimiento_sistema(){
  8000dea:	db0f      	blt.n	8000e0c <medicion_movimiento_sistema+0x118>
  8000dec:	4b35      	ldr	r3, [pc, #212]	; (8000ec4 <medicion_movimiento_sistema+0x1d0>)
  8000dee:	edd3 7a00 	vldr	s15, [r3]
- 8000df2:	eeb0 7a00 	vmov.f32	s14, #0	; 0x40000000  2.0
+ 8000df2:	eeb0 7a08 	vmov.f32	s14, #8	; 0x40400000  3.0
  8000df6:	eef4 7ac7 	vcmpe.f32	s15, s14
  8000dfa:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
  8000dfe:	d805      	bhi.n	8000e0c <medicion_movimiento_sistema+0x118>
@@ -1171,10 +1171,10 @@ void medicion_movimiento_sistema(){
  8000e04:	4b33      	ldr	r3, [pc, #204]	; (8000ed4 <medicion_movimiento_sistema+0x1e0>)
  8000e06:	2201      	movs	r2, #1
  8000e08:	601a      	str	r2, [r3, #0]
-	if (Volt >= 1.0 && Volt <= 2.0 ){
+	if (Volt >= 1.0 && Volt <= 3.0 ){
  8000e0a:	e053      	b.n	8000eb4 <medicion_movimiento_sistema+0x1c0>
 	}
-	else if(Volt2>=1.0 && Volt2<=2.0){
+	else if(Volt2>=1.0 && Volt2<=3.0){
  8000e0c:	4b2e      	ldr	r3, [pc, #184]	; (8000ec8 <medicion_movimiento_sistema+0x1d4>)
  8000e0e:	edd3 7a00 	vldr	s15, [r3]
  8000e12:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
@@ -1183,7 +1183,7 @@ void medicion_movimiento_sistema(){
  8000e1e:	db0f      	blt.n	8000e40 <medicion_movimiento_sistema+0x14c>
  8000e20:	4b29      	ldr	r3, [pc, #164]	; (8000ec8 <medicion_movimiento_sistema+0x1d4>)
  8000e22:	edd3 7a00 	vldr	s15, [r3]
- 8000e26:	eeb0 7a00 	vmov.f32	s14, #0	; 0x40000000  2.0
+ 8000e26:	eeb0 7a08 	vmov.f32	s14, #8	; 0x40400000  3.0
  8000e2a:	eef4 7ac7 	vcmpe.f32	s15, s14
  8000e2e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
  8000e32:	d805      	bhi.n	8000e40 <medicion_movimiento_sistema+0x14c>
@@ -1193,10 +1193,10 @@ void medicion_movimiento_sistema(){
  8000e38:	4b26      	ldr	r3, [pc, #152]	; (8000ed4 <medicion_movimiento_sistema+0x1e0>)
  8000e3a:	2202      	movs	r2, #2
  8000e3c:	601a      	str	r2, [r3, #0]
-	else if(Volt2>=1.0 && Volt2<=2.0){
+	else if(Volt2>=1.0 && Volt2<=3.0){
  8000e3e:	e039      	b.n	8000eb4 <medicion_movimiento_sistema+0x1c0>
 	}
-	else if(Volt3>=1.0 && Volt3<=2.0){
+	else if(Volt3>=1.0 && Volt3<=3.0){
  8000e40:	4b22      	ldr	r3, [pc, #136]	; (8000ecc <medicion_movimiento_sistema+0x1d8>)
  8000e42:	edd3 7a00 	vldr	s15, [r3]
  8000e46:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
@@ -1205,7 +1205,7 @@ void medicion_movimiento_sistema(){
  8000e52:	db0f      	blt.n	8000e74 <medicion_movimiento_sistema+0x180>
  8000e54:	4b1d      	ldr	r3, [pc, #116]	; (8000ecc <medicion_movimiento_sistema+0x1d8>)
  8000e56:	edd3 7a00 	vldr	s15, [r3]
- 8000e5a:	eeb0 7a00 	vmov.f32	s14, #0	; 0x40000000  2.0
+ 8000e5a:	eeb0 7a08 	vmov.f32	s14, #8	; 0x40400000  3.0
  8000e5e:	eef4 7ac7 	vcmpe.f32	s15, s14
  8000e62:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
  8000e66:	d805      	bhi.n	8000e74 <medicion_movimiento_sistema+0x180>
@@ -1215,10 +1215,10 @@ void medicion_movimiento_sistema(){
  8000e6c:	4b19      	ldr	r3, [pc, #100]	; (8000ed4 <medicion_movimiento_sistema+0x1e0>)
  8000e6e:	2203      	movs	r2, #3
  8000e70:	601a      	str	r2, [r3, #0]
-	else if(Volt3>=1.0 && Volt3<=2.0){
+	else if(Volt3>=1.0 && Volt3<=3.0){
  8000e72:	e01f      	b.n	8000eb4 <medicion_movimiento_sistema+0x1c0>
 		}
-	else if(Volt4>=1.0 && Volt4<=2.0){
+	else if(Volt4>=1.0 && Volt4<=3.0){
  8000e74:	4b16      	ldr	r3, [pc, #88]	; (8000ed0 <medicion_movimiento_sistema+0x1dc>)
  8000e76:	edd3 7a00 	vldr	s15, [r3]
  8000e7a:	eeb7 7a00 	vmov.f32	s14, #112	; 0x3f800000  1.0
@@ -1227,7 +1227,7 @@ void medicion_movimiento_sistema(){
  8000e86:	db0f      	blt.n	8000ea8 <medicion_movimiento_sistema+0x1b4>
  8000e88:	4b11      	ldr	r3, [pc, #68]	; (8000ed0 <medicion_movimiento_sistema+0x1dc>)
  8000e8a:	edd3 7a00 	vldr	s15, [r3]
- 8000e8e:	eeb0 7a00 	vmov.f32	s14, #0	; 0x40000000  2.0
+ 8000e8e:	eeb0 7a08 	vmov.f32	s14, #8	; 0x40400000  3.0
  8000e92:	eef4 7ac7 	vcmpe.f32	s15, s14
  8000e96:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
  8000e9a:	d805      	bhi.n	8000ea8 <medicion_movimiento_sistema+0x1b4>
@@ -1237,7 +1237,7 @@ void medicion_movimiento_sistema(){
  8000ea0:	4b0c      	ldr	r3, [pc, #48]	; (8000ed4 <medicion_movimiento_sistema+0x1e0>)
  8000ea2:	2204      	movs	r2, #4
  8000ea4:	601a      	str	r2, [r3, #0]
-	else if(Volt4>=1.0 && Volt4<=2.0){
+	else if(Volt4>=1.0 && Volt4<=3.0){
  8000ea6:	e005      	b.n	8000eb4 <medicion_movimiento_sistema+0x1c0>
 			}
 	else{
