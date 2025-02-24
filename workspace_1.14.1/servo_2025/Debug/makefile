@@ -60,8 +60,8 @@ all: main-build
 main-build: servo_2025.elf secondary-outputs
 
 # Tool invocations
-servo_2025.elf servo_2025.map: $(OBJS) $(USER_OBJS) C:\Users\mecat\Documents\GitHub\STM32CubeIDE\workspace_1.14.1\servo_2025\STM32F302R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "servo_2025.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\mecat\Documents\GitHub\STM32CubeIDE\workspace_1.14.1\servo_2025\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="servo_2025.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+servo_2025.elf servo_2025.map: $(OBJS) $(USER_OBJS) C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\servo_2025\STM32F302R8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "servo_2025.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\servo_2025\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="servo_2025.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

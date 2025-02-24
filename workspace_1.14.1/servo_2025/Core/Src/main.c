@@ -120,7 +120,7 @@ int main(void)
       // Ajusta el ciclo de trabajo del PWM con el valor calculado
       __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_value);
 
-//      HAL_Delay(1);  // Retraso de 10ms
+
   }
 }
 
