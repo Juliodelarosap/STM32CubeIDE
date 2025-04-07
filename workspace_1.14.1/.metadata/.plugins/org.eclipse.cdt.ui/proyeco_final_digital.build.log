@@ -1,0 +1,37 @@
+17:46:41 **** Incremental Build of configuration Debug for project proyeco_final_digital ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'handleAutoMode':
+../Core/Src/main.c:271:43: warning: '%3d' directive writing 3 bytes into a region of size 2 [-Wformat-overflow=]
+  271 |         sprintf(statusMsg, "Auto: ON  Hum:%3d%%", porcentaje_humedad);
+      |                                           ^~~
+../Core/Src/main.c:271:9: note: 'sprintf' output 19 bytes into a destination of size 16
+  271 |         sprintf(statusMsg, "Auto: ON  Hum:%3d%%", porcentaje_humedad);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:305:43: warning: '#=ON/OFF A=Conf <*' directive writing 18 bytes into a region of size 16 [-Wformat-overflow=]
+  305 |         sprintf(timeMsg, "#=ON/OFF A=Conf <*");
+      |                           ~~~~~~~~~~~~~~~~^~
+../Core/Src/main.c:305:9: note: 'sprintf' output 19 bytes into a destination of size 16
+  305 |         sprintf(timeMsg, "#=ON/OFF A=Conf <*");
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'handleManualWaterMode':
+../Core/Src/main.c:332:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  332 |         sprintf(tiempo, "Riego: %03ds   <*", tiempoRiegoRestante);
+      |                                           ^
+../Core/Src/main.c:332:9: note: 'sprintf' output between 17 and 19 bytes into a destination of size 16
+  332 |         sprintf(tiempo, "Riego: %03ds   <*", tiempoRiegoRestante);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "proyeco_final_digital.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\proyeco_final_digital\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="proyeco_final_digital.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: proyeco_final_digital.elf
+ 
+arm-none-eabi-size  proyeco_final_digital.elf 
+arm-none-eabi-objdump -h -S proyeco_final_digital.elf  > "proyeco_final_digital.list"
+   text	   data	    bss	    dec	    hex	filename
+  28080	    104	   2416	  30600	   7788	proyeco_final_digital.elf
+Finished building: default.size.stdout
+ 
+Finished building: proyeco_final_digital.list
+ 
+
+17:46:42 Build Finished. 0 errors, 3 warnings. (took 805ms)
+

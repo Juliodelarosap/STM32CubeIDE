@@ -107,17 +107,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  /* Código modificado */
+
   while (1)
   {
-      // Ajusta el valor del PWM en función del valor del ADC
+      // Ajustando el valor del PWM en función del valor del ADC
       pwm_value = 500 + (adc_value * 2000 / 4095);
 
-      // Asegúrate de que pwm_value esté dentro del rango permitido
-      if (pwm_value < 0) pwm_value = 0;    // Valor mínimo de PWM
-      if (pwm_value > htim2.Init.Period) pwm_value = htim2.Init.Period; // Valor máximo de PWM
+      // Asegurnado pwm_value este dentro del rango
+      if (pwm_value < 0) pwm_value = 0;    // Valor minimo de PWM
+      if (pwm_value > htim2.Init.Period) pwm_value = htim2.Init.Period; // Valor maximo de PWM
 
-      // Ajusta el ciclo de trabajo del PWM con el valor calculado
+      // PWM con el valor calculado
       __HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_1, pwm_value);
 
 
