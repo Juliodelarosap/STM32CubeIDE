@@ -34,9 +34,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define MENU_MODE 0
-#define AUTO_MODE 1
+// Redefine los modos del sistema para mayor claridad
+#define CLOCK_MODE 0       // Modo reloj
+#define AUTO_MODE 1        // Modo automático
 #define MANUAL_WATER_MODE 2  // Modo para riego manual
+#define MENU_MODE 3        // Modo menú principal
 
 #define BOMBA_PIN GPIO_PIN_13  // PB13 para la bomba
 #define BOMBA_PORT GPIOB
@@ -47,6 +49,10 @@
 #define HUMEDAD_SECO 3000     // Lectura ADC cuando el suelo está seco (mayor valor)
 #define HUMEDAD_MOJADO 1000   // Lectura ADC cuando el suelo está mojado (menor valor)
 #define UMBRAL_RIEGO 2500     // Umbral para activar el riego automático
+
+// Reducir tiempo de debounce para mejor respuesta
+#define KEY_DEBOUNCE_TIME 300  // 300ms para evitar rebotes pero permitir respuesta rápida
+/* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
@@ -79,7 +85,6 @@ uint16_t tiempoRiegoRestante = 0;  // en segundos
 
 /* Variables para estabilidad del menú */
 uint32_t lastKeyPressTime = 0;
-#define KEY_DEBOUNCE_TIME 500  // 500ms para evitar cambios rápidos de menú
 
 /* Variable para la lectura del ADC */
 uint32_t medida_adc;
@@ -238,12 +243,13 @@ void desactivarBomba(void) {
     bombaActiva = 0;
 }
 
+/* Función para mostrar el menú principal actualizado */
 void displayMenu(void) {
     lcd_clear();
     lcd_put_cur(0, 0);
-    lcd_send_string("A. Automatico");
+    lcd_send_string("1.Reloj 2.Auto");
     lcd_put_cur(1, 0);
-    lcd_send_string("B. Manual");
+    lcd_send_string("3.Riego Manual");
 }
 
 /* Función para manejar el modo reloj */
@@ -255,7 +261,7 @@ void handleClockMode(void) {
     lcd_put_cur(1, 0);
     lcd_send_string(dateData);
     lcd_put_cur(1, 14);
-    lcd_send_string("<-");
+    lcd_send_string("<*");
 }
 
 /* Función para manejar el modo automático */
@@ -264,10 +270,10 @@ void handleAutoMode(void) {
     lcd_put_cur(0, 0);
 
     char statusMsg[16];
-    if (autoModeEnabled) {
-        // Actualizar porcentaje de humedad
-        porcentaje_humedad = calcularPorcentajeHumedad(medida_adc);
+    // Actualizar porcentaje de humedad
+    porcentaje_humedad = calcularPorcentajeHumedad(medida_adc);
 
+    if (autoModeEnabled) {
         sprintf(statusMsg, "Auto: ON  Hum:%3d%%", porcentaje_humedad);
 
         // Verificar si es hora de riego y la humedad es baja
@@ -287,7 +293,7 @@ void handleAutoMode(void) {
             desactivarBomba();
         }
     } else {
-        sprintf(statusMsg, "Auto: OFF");
+        sprintf(statusMsg, "Auto: OFF Hum:%3d%%", porcentaje_humedad);
         // Asegurarse de que la bomba esté apagada cuando el modo automático está desactivado
         if (bombaActiva) {
             desactivarBomba();
@@ -335,6 +341,8 @@ void handleManualWaterMode(void) {
         lcd_send_string("# ON/OFF     <*");
     }
 }
+
+// Función mejorada para procesar las teclas presionadas
 void processKeyInput(char key) {
     // Evitar cambios demasiado rápidos de pantalla
     uint32_t currentTime = HAL_GetTick();
@@ -343,36 +351,59 @@ void processKeyInput(char key) {
     }
     lastKeyPressTime = currentTime;
 
+    // Para depuración - enviar la tecla presionada por UART si es necesario
+    char debugMsg[20];
+    sprintf(debugMsg, "Tecla: %c Modo: %d\r\n", key, currentMode);
+    HAL_UART_Transmit(&huart2, (uint8_t*)debugMsg, strlen(debugMsg), 100);
+
     switch (currentMode) {
         case MENU_MODE:
-            if (key == 'A') {
+            if (key == '1') {
+                currentMode = CLOCK_MODE;
+                handleClockMode();
+            } else if (key == '2') {
                 currentMode = AUTO_MODE;
-            } else if (key == 'B') {
+                handleAutoMode();
+            } else if (key == '3') {
                 currentMode = MANUAL_WATER_MODE;
+                handleManualWaterMode();
+            }
+            break;
+
+        case CLOCK_MODE:
+            if (key == '*') {
+                currentMode = MENU_MODE;
+                displayMenu();
             }
             break;
 
         case AUTO_MODE:
             if (key == '*') {
                 currentMode = MENU_MODE;
+                displayMenu();
             } else if (key == '#') {
                 // Alternar el estado del modo automático
                 autoModeEnabled = !autoModeEnabled;
                 if (!autoModeEnabled && bombaActiva) {
                     desactivarBomba();
                 }
+                handleAutoMode();  // Actualizar pantalla inmediatamente
             } else if (key == 'A') {
                 // Incrementar la hora de encendido
                 autoOnHour = (autoOnHour + 1) % 24;
+                handleAutoMode();  // Actualizar pantalla inmediatamente
             } else if (key == 'B') {
                 // Decrementar la hora de encendido
                 autoOnHour = (autoOnHour + 23) % 24;
+                handleAutoMode();  // Actualizar pantalla inmediatamente
             } else if (key == 'C') {
                 // Incrementar la hora de apagado
                 autoOffHour = (autoOffHour + 1) % 24;
+                handleAutoMode();  // Actualizar pantalla inmediatamente
             } else if (key == 'D') {
                 // Decrementar la hora de apagado
                 autoOffHour = (autoOffHour + 23) % 24;
+                handleAutoMode();  // Actualizar pantalla inmediatamente
             }
             break;
 
@@ -381,6 +412,7 @@ void processKeyInput(char key) {
                 // Asegurarse de que la bomba esté apagada al salir
                 desactivarBomba();
                 currentMode = MENU_MODE;
+                displayMenu();
             } else if (key == '#') {
                 // Alternar el estado de la bomba
                 if (bombaActiva) {
@@ -388,10 +420,12 @@ void processKeyInput(char key) {
                 } else {
                     activarBomba();
                 }
+                handleManualWaterMode();  // Actualizar pantalla inmediatamente
             }
             break;
     }
 }
+
 uint32_t medida_adc;
 /* USER CODE END 0 */
 
@@ -432,77 +466,81 @@ int main(void)
   /* USER CODE BEGIN 2 */
    HAL_ADC_Start_DMA(&hadc1, &medida_adc, 1);
    lcd_init();
-  if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) != 0x2345)
+
+   if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) != 0x2345)
    {
        // Establecer la hora actual de República Dominicana (UTC-4)
        set_time(22, 01, 00);
        set_date(25, 3, 23, 7); // 23 de marzo de 2025, domingo (7)
    }
-  // Inicializar el pin de la bomba como salida y asegurarse de que esté apagada
+
+   // Inicializar el pin de la bomba como salida y asegurarse de que esté apagada
    HAL_GPIO_WritePin(BOMBA_PORT, BOMBA_PIN, GPIO_PIN_RESET);
-   // Mostrar el menú al inicio
+
+   // Iniciar en modo menú y mostrar el menú principal
+   currentMode = MENU_MODE;
    displayMenu();
+
+   // Enviar mensaje de inicio por UART para depuración
+   char startMsg[] = "Sistema de riego iniciado\r\n";
+   HAL_UART_Transmit(&huart2, (uint8_t*)startMsg, strlen(startMsg), 100);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // Obtener tecla presionada
+    char key = Keypad_Get_Char();
+    HAL_Delay(100);
 
-	  // Obtener tecla presionada
-	       char key = Keypad_Get_Char();
+    // Procesar la entrada del teclado si se presionó una tecla
+    if (key != 0) {
+        processKeyInput(key);
+    }
 
-	       // Procesar la entrada del teclado si se presionó una tecla
-	       if (key != 0) {
-	           processKeyInput(key);
+    // Actualizar la pantalla periódicamente solo para modos que necesitan actualización constante
+    static uint32_t lastRefresh = 0;
+    if (HAL_GetTick() - lastRefresh > 1000) { // Actualizar cada segundo
+        switch (currentMode) {
+            case CLOCK_MODE:
+                handleClockMode();
+                break;
+            case AUTO_MODE:
+                if (autoModeEnabled || bombaActiva) {
+                    handleAutoMode();
+                }
+                break;
+            case MANUAL_WATER_MODE:
+                if (bombaActiva) {
+                    handleManualWaterMode();
+                }
+                break;
+        }
 
-	           // Actualizar inmediatamente la pantalla después de presionar una tecla
-	           // para evitar retrasos en la respuesta visual
-	           switch (currentMode) {
-	               case MENU_MODE:
-	                   displayMenu();
-	                   break;
-	               case AUTO_MODE:
-	                   handleAutoMode();
-	                   break;
-	               case MANUAL_WATER_MODE:
-	                   handleManualWaterMode();
-	                   break;
-	           }
-	       }
+        // Verificar si el modo automático está activado para controlar el riego
+        if (autoModeEnabled && currentMode == AUTO_MODE) {
+            verificarHumedadYRegar();
+        }
 
-	       // Actualizar la pantalla periódicamente solo para modos que necesitan actualización constante
-	       static uint32_t lastRefresh = 0;
-	       if (HAL_GetTick() - lastRefresh > 1000) { // Actualizar cada segundo
-	           if (currentMode == AUTO_MODE && autoModeEnabled) {
-	               handleAutoMode();
-	           } else if (currentMode == MANUAL_WATER_MODE && bombaActiva) {
-	               handleManualWaterMode();
-	           }
+        lastRefresh = HAL_GetTick();
+    }
 
-	           // Verificar si el modo automático está activado para controlar el riego
-	           if (autoModeEnabled && currentMode == AUTO_MODE) {
-	               verificarHumedadYRegar();
-	           }
+    // Verificar si se ha excedido el tiempo máximo de riego
+    if (bombaActiva && (HAL_GetTick() - tiempoInicioRiego > MAX_RIEGO_TIEMPO)) {
+        desactivarBomba();
+        // Actualizar pantalla inmediatamente si estamos en una vista relevante
+        if (currentMode == MANUAL_WATER_MODE || (currentMode == AUTO_MODE && autoModeEnabled)) {
+            if (currentMode == MANUAL_WATER_MODE) {
+                handleManualWaterMode();
+            } else {
+                handleAutoMode();
+            }
+        }
+    }
 
-	           lastRefresh = HAL_GetTick();
-	       }
-
-	       // Verificar si se ha excedido el tiempo máximo de riego
-	       if (bombaActiva && (HAL_GetTick() - tiempoInicioRiego > MAX_RIEGO_TIEMPO)) {
-	           desactivarBomba();
-	           // Actualizar pantalla inmediatamente si estamos en una vista relevante
-	           if (currentMode == MANUAL_WATER_MODE || (currentMode == AUTO_MODE && autoModeEnabled)) {
-	               if (currentMode == MANUAL_WATER_MODE) {
-	                   handleManualWaterMode();
-	               } else {
-	                   handleAutoMode();
-	               }
-	           }
-	       }
-
-	       // Pequeña pausa para reducir el consumo de CPU
-	       HAL_Delay(50);
+    // Pequeña pausa para reducir el consumo de CPU
+    HAL_Delay(50);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -649,7 +687,6 @@ static void MX_I2C1_Init(void)
   {
     Error_Handler();
   }
-
   /** Configure Analogue filter
   */
   if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)

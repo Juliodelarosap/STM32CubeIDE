@@ -1,0 +1,1220 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "keypadmodify.h"
+#include "lcd.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+#define BOMBA_PIN GPIO_PIN_8       // Define el pin para la bomba
+#define BOMBA_PORT GPIOC           // Define el puerto para la bomba
+#define SENSOR_HUMEDAD_PIN GPIO_PIN_0  // Define el pin ADC para sensor de humedad
+#define UMBRAL_HUMEDAD_MIN 30      // Valor mínimo de humedad (0-100)
+#define UMBRAL_HUMEDAD_MAX 70      // Valor óptimo de humedad (0-100)
+#define TIEMPO_MAX_DEFAULT 60      // Tiempo máximo de riego predeterminado (segundos)
+#define DS3231_ADDRESS 0xD0
+#define TIEMPO_RIEGO_PROGRAMADO 12  // 12 segundos para el riego programado
+
+
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
+UART_HandleTypeDef huart2;
+
+/* USER CODE BEGIN PV */
+char key;
+uint8_t menu_state = 0;  // 0: Menú principal, 1: Modo Automático, 2: Modo Manual, 3: Configuración
+uint8_t cursor_position = 0;  // Posición del cursor en el menú
+uint8_t humedad_actual = 0;   // Valor de humedad (0-100%)
+uint32_t tiempo_max_riego = TIEMPO_MAX_DEFAULT;  // Tiempo máximo para riego manual
+uint32_t tiempo_inicio_riego = 0;  // Para controlar el tiempo de riego manual
+uint8_t bomba_activa = 0;     // Estado de la bomba
+//char buffer[16];
+
+uint8_t hora_riego = 7;     // Hora programada (por defecto 7:00)
+uint8_t minuto_riego = 0;   // Minuto programado
+uint8_t riego_programado_activo = 1;  // 1: activo, 0: inactivo
+uint8_t configurando_hora = 0; // Estado para configuración de hora
+uint32_t medida;
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+static void MX_I2C1_Init(void);
+/* USER CODE BEGIN PFP */
+void display_menu(void);
+void modo_automatico(void);
+void modo_manual(void);
+void configurar_tiempo(void);
+void activar_bomba(void);
+void desactivar_bomba(void);
+uint8_t leer_humedad(void);
+void mostrar_humedad(void);
+void actualizar_estado(void);
+void configurar_rtc(void);  // Añadir este prototipo
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+
+uint8_t decToBcd(int val)
+{
+  return (uint8_t)( (val/10*16) + (val%10) );
+}
+// Convert binary coded decimal to normal decimal numbers
+int bcdToDec(uint8_t val)
+{
+  return (int)( (val/16*10) + (val%16) );
+}
+
+typedef struct {
+	uint8_t seconds;
+	uint8_t minutes;
+	uint8_t hour;
+	uint8_t dayofweek;
+	uint8_t dayofmonth;
+	uint8_t month;
+	uint8_t year;
+} TIME;
+
+TIME time;
+
+
+void Set_Time (uint8_t sec, uint8_t min, uint8_t hour, uint8_t dow, uint8_t dom, uint8_t month, uint8_t year)
+{
+	uint8_t set_time[7];
+	set_time[0] = decToBcd(sec);
+	set_time[1] = decToBcd(min);
+	set_time[2] = decToBcd(hour);
+	set_time[3] = decToBcd(dow);
+	set_time[4] = decToBcd(dom);
+	set_time[5] = decToBcd(month);
+	set_time[6] = decToBcd(year);
+
+	HAL_I2C_Mem_Write(&hi2c1, DS3231_ADDRESS, 0x00, 1, set_time, 7, 1000);
+}
+
+void Get_Time (void)
+{
+	uint8_t get_time[7];
+	HAL_I2C_Mem_Read(&hi2c1, DS3231_ADDRESS, 0x00, 1, get_time, 7, 1000);
+	time.seconds = bcdToDec(get_time[0]);
+	time.minutes = bcdToDec(get_time[1]);
+	time.hour = bcdToDec(get_time[2]);
+	time.dayofweek = bcdToDec(get_time[3]);
+	time.dayofmonth = bcdToDec(get_time[4]);
+	time.month = bcdToDec(get_time[5]);
+	time.year = bcdToDec(get_time[6]);
+}
+
+float Get_Temp (void)
+{
+	uint8_t temp[2];
+
+	HAL_I2C_Mem_Read(&hi2c1, DS3231_ADDRESS, 0x11, 1, temp, 2, 1000);
+	return ((temp[0])+(temp[1]>>6)/4.0);
+}
+
+
+void force_temp_conv (void)
+{
+	uint8_t status=0;
+	uint8_t control=0;
+	HAL_I2C_Mem_Read(&hi2c1, DS3231_ADDRESS, 0x0F, 1, &status, 1, 100);  // read status register
+	if (!(status&0x04))
+	{
+		HAL_I2C_Mem_Read(&hi2c1, DS3231_ADDRESS, 0x0E, 1, &control, 1, 100);  // read control register
+		HAL_I2C_Mem_Write(&hi2c1, DS3231_ADDRESS, 0x0E, 1, (uint8_t *)(control|(0x20)), 1, 100);
+	}
+}
+
+float TEMP;
+char buffer[15];
+
+void handle_selection(void) {
+    lcd_clear();
+
+    if (cursor_position == 0) {
+        lcd_enviar("MODO AUTOMATICO", 0, 0);
+        lcd_enviar("ACTIVADO", 1, 0);
+        // Aquí iría el código para el modo automático
+    } else {
+        lcd_enviar("MODO MANUAL", 0, 0);
+        lcd_enviar("ACTIVADO", 1, 0);
+        // Aquí iría el código para el modo manual
+    }
+
+    lcd_enviar("* PARA VOLVER", 3, 0);
+}
+
+void display_menu(void) {
+    lcd_clear();
+
+    // Solo mostramos 2 opciones a la vez (para display 16x2)
+    if (cursor_position == 0) {
+        lcd_enviar(">1.Auto", 0, 0);
+        lcd_enviar(" 2.Manual", 1, 0);
+    }
+    else if (cursor_position == 1) {
+        lcd_enviar(" 1.Auto", 0, 0);
+        lcd_enviar(">2.Manual", 1, 0);
+    }
+    else if (cursor_position == 2) {
+        lcd_enviar(">3.Config", 0, 0);
+        lcd_enviar(" 4.Reloj", 1, 0);
+    }
+    else if (cursor_position == 3) {
+        lcd_enviar(" 3.Config", 0, 0);
+        lcd_enviar(">4.Reloj", 1, 0);
+    }
+}
+
+void mostrar_reloj(void) {
+    uint8_t salir = 0;
+
+    while (!salir) {
+        // Obtener la hora actual
+        Get_Time();
+
+        lcd_clear();
+        sprintf(buffer, "HORA: %02d:%02d:%02d", time.hour, time.minutes, time.seconds);
+        lcd_enviar(buffer, 0, 0);
+        sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+        lcd_enviar(buffer, 1, 0);
+
+        // Verificar entrada del usuario
+        char k = Keypad_Get_Char();
+        if (k != 0) {
+            HAL_Delay(200);  // Debounce
+
+            if (k == '*') {
+                salir = 1;  // Volver al menú principal
+            }
+            else if (k == '#') {
+                // Entrar en modo configuración
+                configurar_rtc();
+            }
+        }
+
+        HAL_Delay(200);  // Actualizar cada 200ms
+    }
+}
+
+
+
+void configurar_hora_riego(void) {
+    uint8_t nueva_hora = hora_riego;
+    uint8_t nuevo_minuto = minuto_riego;
+    uint8_t estado = 0;  // 0: configurando hora, 1: configurando minutos, 2: activar/desactivar
+    uint8_t salir = 0;
+
+    while (!salir) {
+        lcd_clear();
+
+        if (estado == 0) {
+            lcd_enviar("CONF. HORA RIEGO", 0, 0);
+            sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+            lcd_enviar(buffer, 1, 0);
+        }
+        else if (estado == 1) {
+            lcd_enviar("CONF. MIN RIEGO", 0, 0);
+            sprintf(buffer, "MIN: %02d  #:SIG", nuevo_minuto);
+            lcd_enviar(buffer, 1, 0);
+        }
+        else if (estado == 2) {
+            lcd_enviar("PROGRAMADOR", 0, 0);
+            sprintf(buffer, "%s  #:GUARDAR", riego_programado_activo ? "ACTIVADO" : "DESACTIVADO");
+            lcd_enviar(buffer, 1, 0);
+        }
+
+        char k = Keypad_Get_Char();
+
+        if (k != 0) {
+            HAL_Delay(200);  // Debounce
+
+            if (estado == 0) {  // Configurando hora
+                if (k >= '0' && k <= '9') {
+                    uint8_t valor = k - '0';
+                    if (valor <= 23) {
+                        nueva_hora = valor;
+                    }
+                }
+                else if (k == 'A' && nueva_hora < 23) {
+                    nueva_hora++;
+                }
+                else if (k == 'B' && nueva_hora > 0) {
+                    nueva_hora--;
+                }
+                else if (k == '#') {
+                    estado = 1;  // Pasar a configurar minutos
+                }
+                else if (k == '*') {
+                    salir = 1;  // Cancelar
+                }
+            }
+            else if (estado == 1) {  // Configurando minutos
+                if (k >= '0' && k <= '9') {
+                    uint8_t valor = k - '0';
+                    if (valor <= 59) {
+                        nuevo_minuto = valor;
+                    }
+                }
+                else if (k == 'A' && nuevo_minuto < 59) {
+                    nuevo_minuto++;
+                }
+                else if (k == 'B' && nuevo_minuto > 0) {
+                    nuevo_minuto--;
+                }
+                else if (k == '#') {
+                    estado = 2;  // Pasar a activar/desactivar
+                }
+                else if (k == '*') {
+                    estado = 0;  // Volver a configurar hora
+                }
+            }
+            else if (estado == 2) {  // Activando/desactivando
+                if (k == 'A' || k == 'B') {
+                    riego_programado_activo = !riego_programado_activo;
+                }
+                else if (k == '#') {
+                    // Guardar configuración
+                    hora_riego = nueva_hora;
+                    minuto_riego = nuevo_minuto;
+
+                    lcd_clear();
+                    lcd_enviar("HORA GUARDADA", 0, 0);
+                    sprintf(buffer, "%02d:%02d %s", hora_riego, minuto_riego,
+                            riego_programado_activo ? "ON" : "OFF");
+                    lcd_enviar(buffer, 1, 0);
+                    HAL_Delay(1500);
+
+                    salir = 1;
+                }
+                else if (k == '*') {
+                    estado = 1;  // Volver a configurar minutos
+                }
+            }
+        }
+    }
+}
+
+
+void modo_automatico(void) {
+    lcd_clear();
+
+    // Variable estática para saber si se activó por tiempo programado
+    static uint8_t activado_por_tiempo = 0;
+
+    // Si está regando, mostrar información según el origen
+    if (bomba_activa) {
+        if (activado_por_tiempo) {
+            // Mostrar tiempo restante si fue activado por tiempo programado
+            uint32_t tiempo_transcurrido = (HAL_GetTick() - tiempo_inicio_riego) / 1000;
+            uint32_t tiempo_restante = TIEMPO_RIEGO_PROGRAMADO;
+
+            if (tiempo_transcurrido < TIEMPO_RIEGO_PROGRAMADO) {
+                tiempo_restante = TIEMPO_RIEGO_PROGRAMADO - tiempo_transcurrido;
+                lcd_enviar("REGANDO:TIEMPO", 0, 0);
+                sprintf(buffer, "RESTA: %lu seg", tiempo_restante);
+                lcd_enviar(buffer, 1, 0);
+
+                // Si se completó el tiempo, desactivar bomba
+                if (tiempo_restante <= 0) {
+                    desactivar_bomba();
+                    activado_por_tiempo = 0;
+                }
+            } else {
+                desactivar_bomba();
+                activado_por_tiempo = 0;
+            }
+        } else if (humedad_actual < UMBRAL_HUMEDAD_MIN) {
+            // Activado por humedad baja
+            lcd_enviar("REGANDO:HUMEDAD", 0, 0);
+            sprintf(buffer, "HUM:%d%% BAJA", humedad_actual);
+            lcd_enviar(buffer, 1, 0);
+        }
+    } else {
+        // Mostrar hora actual en el modo standby
+        sprintf(buffer, "AUTO %02d:%02d:%02d", time.hour, time.minutes, time.seconds);
+        lcd_enviar(buffer, 0, 0);
+
+        // Mostrar información alternada en segunda línea
+        static uint8_t mostrar_info = 0;
+
+        if (mostrar_info == 0) {
+            // Mostrar humedad actual y opción de configuración
+            sprintf(buffer, "HUM:%d%% C:CFG", humedad_actual);
+            lcd_enviar(buffer, 1, 0);
+        } else {
+            // Mostrar hora programada
+            sprintf(buffer, "PROG:%02d:%02d %s", hora_riego, minuto_riego,
+                    riego_programado_activo ? "ON" : "OFF");
+            lcd_enviar(buffer, 1, 0);
+        }
+
+        // Alternar la información mostrada cada 3 segundos
+        static uint32_t ultimo_cambio = 0;
+        if (HAL_GetTick() - ultimo_cambio >= 3000) {
+            mostrar_info = !mostrar_info;
+            ultimo_cambio = HAL_GetTick();
+        }
+
+        // Lógica de control automático por humedad
+        if (humedad_actual < UMBRAL_HUMEDAD_MIN && !bomba_activa) {
+            activar_bomba();
+            activado_por_tiempo = 0;  // No activado por tiempo
+            lcd_clear();
+            lcd_enviar("REGANDO:HUMEDAD", 0, 0);
+            sprintf(buffer, "HUM:%d%% BAJA", humedad_actual);
+            lcd_enviar(buffer, 1, 0);
+        }
+        else if (humedad_actual >= UMBRAL_HUMEDAD_MAX && bomba_activa && !activado_por_tiempo) {
+            desactivar_bomba();
+        }
+
+        // Lógica de riego programado
+        if (riego_programado_activo && !bomba_activa) {
+            // Actualizar la hora actual ya se hace en el bucle principal
+            if (time.hour == hora_riego && time.minutes == minuto_riego && time.seconds < 10) {
+                // Iniciar riego si es la hora programada
+                activar_bomba();
+                activado_por_tiempo = 1;  // Marcar como activado por tiempo
+                lcd_clear();
+                lcd_enviar("REGANDO:TIEMPO", 0, 0);
+                sprintf(buffer, "PROG:%02d:%02d %ds", hora_riego, minuto_riego, TIEMPO_RIEGO_PROGRAMADO);
+                lcd_enviar(buffer, 1, 0);
+            }
+        }
+    }
+}
+void modo_manual(void) {
+    lcd_clear();
+    lcd_enviar("MODO MANUAL", 0, 0);
+    sprintf(buffer, "TIEMPO: %lu s", tiempo_max_riego);
+    lcd_enviar(buffer, 1, 0);
+
+    if (bomba_activa) {
+        uint32_t tiempo_transcurrido = (HAL_GetTick() - tiempo_inicio_riego) / 1000;
+        uint32_t tiempo_restante = tiempo_max_riego;
+
+        if (tiempo_transcurrido < tiempo_max_riego) {
+            tiempo_restante = tiempo_max_riego - tiempo_transcurrido;
+            lcd_clear();
+            lcd_enviar("REGANDO", 0, 0);
+            sprintf(buffer, "%lu s  C:PARAR", tiempo_restante);
+            lcd_enviar(buffer, 1, 0);
+        } else {
+            desactivar_bomba();
+            lcd_clear();
+            lcd_enviar("COMPLETO", 0, 0);
+            lcd_enviar("* PARA VOLVER", 1, 0);
+        }
+    } else {
+        lcd_clear();
+        lcd_enviar("A+ B- #:RIEGO", 0, 0);
+        sprintf(buffer, "TIEMPO: %lu s", tiempo_max_riego);
+        lcd_enviar(buffer, 1, 0);
+    }
+}
+void configurar_tiempo(void) {
+    lcd_clear();
+    lcd_enviar("CONFIG. TIEMPO", 0, 0);
+    sprintf(buffer, "ACTUAL: %d seg", tiempo_max_riego);
+    lcd_enviar(buffer, 1, 0);
+
+    // Instrucciones para usar letras
+    lcd_enviar("A:+5 B:+10 C:+30 D:-", 2, 0);
+    lcd_enviar("* CANCEL   # GUARDAR", 3, 0);
+
+    uint32_t nuevo_tiempo = tiempo_max_riego;
+    int salir = 0;
+
+    while (!salir) {
+        char k = Keypad_Get_Char();
+
+        if (k != 0) {
+            HAL_Delay(200);  // Debounce
+
+            switch(k) {
+                case 'A':
+                    nuevo_tiempo += 5;  // Incrementar 5 segundos
+                    lcd_clear();
+                    lcd_enviar("CONFIG. TIEMPO", 0, 0);
+                    sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+                    lcd_enviar(buffer, 1, 0);
+                    lcd_enviar("A:+5 B:+10 C:+30 D:-", 2, 0);
+                    lcd_enviar("* CANCEL   # GUARDAR", 3, 0);
+                    break;
+
+                case 'B':
+                    nuevo_tiempo += 10;  // Incrementar 10 segundos
+                    lcd_clear();
+                    lcd_enviar("CONFIG. TIEMPO", 0, 0);
+                    sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+                    lcd_enviar(buffer, 1, 0);
+                    lcd_enviar("A:+5 B:+10 C:+30 D:-", 2, 0);
+                    lcd_enviar("* CANCEL   # GUARDAR", 3, 0);
+                    break;
+
+                case 'C':
+                    nuevo_tiempo += 30;  // Incrementar 30 segundos
+                    lcd_clear();
+                    lcd_enviar("CONFIG. TIEMPO", 0, 0);
+                    sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+                    lcd_enviar(buffer, 1, 0);
+                    lcd_enviar("A:+5 B:+10 C:+30 D:-", 2, 0);
+                    lcd_enviar("* CANCEL   # GUARDAR", 3, 0);
+                    break;
+
+                case 'D':
+                    if (nuevo_tiempo > 5) {
+                        nuevo_tiempo = nuevo_tiempo / 2;  // Reducir a la mitad (más divertido que solo restar)
+                    }
+                    lcd_clear();
+                    lcd_enviar("CONFIG. TIEMPO", 0, 0);
+                    sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+                    lcd_enviar(buffer, 1, 0);
+                    lcd_enviar("A:+5 B:+10 C:+30 D:-", 2, 0);
+                    lcd_enviar("* CANCEL   # GUARDAR", 3, 0);
+                    break;
+
+                case '#':
+                    // Limitar el tiempo máximo a 300 segundos (5 minutos)
+                    if (nuevo_tiempo > 300) nuevo_tiempo = 300;
+                    if (nuevo_tiempo < 5) nuevo_tiempo = 5;
+
+                    tiempo_max_riego = nuevo_tiempo;
+
+                    // Mostrar animación de guardado
+                    lcd_clear();
+                    lcd_enviar("GUARDANDO", 0, 0);
+                    lcd_enviar("[          ]", 1, 0);
+
+                    for (int i = 1; i <= 10; i++) {
+                        sprintf(buffer, "[");
+                        for (int j = 0; j < i; j++) {
+                            strcat(buffer, "#");
+                        }
+                        for (int j = i; j < 10; j++) {
+                            strcat(buffer, " ");
+                        }
+                        strcat(buffer, "]");
+                        lcd_enviar(buffer, 1, 0);
+                        HAL_Delay(100);
+                    }
+
+                    lcd_clear();
+                    lcd_enviar("TIEMPO CONFIGURADO", 0, 0);
+                    sprintf(buffer, "NUEVO: %d seg", tiempo_max_riego);
+                    lcd_enviar(buffer, 1, 0);
+                    HAL_Delay(1500);
+
+                    salir = 1;
+                    break;
+
+                case '*':
+                    // Mostrar mensaje de cancelación
+                    lcd_clear();
+                    lcd_enviar("CONFIGURACION", 0, 0);
+                    lcd_enviar("CANCELADA", 1, 0);
+                    HAL_Delay(1000);
+                    salir = 1;
+                    break;
+            }
+        }
+    }
+}
+void verificar_tiempo_riego(void) {
+    if (bomba_activa && menu_state == 2) {  // Solo en modo manual
+        uint32_t tiempo_actual = HAL_GetTick();
+        uint32_t tiempo_transcurrido = (tiempo_actual - tiempo_inicio_riego) / 1000;
+
+        if (tiempo_transcurrido >= tiempo_max_riego) {
+            desactivar_bomba();
+            modo_manual();  // Actualizar la pantalla
+        }
+    }
+}
+
+void activar_bomba(void) {
+    // Activar bomba
+    HAL_GPIO_WritePin(BOMBA_PORT, BOMBA_PIN, GPIO_PIN_SET);
+    // Activar LED indicador
+    HAL_GPIO_WritePin(led_GPIO_Port, led_Pin, GPIO_PIN_SET);
+    bomba_activa = 1;
+    tiempo_inicio_riego = HAL_GetTick();  // Registrar tiempo de inicio
+}
+
+void desactivar_bomba(void) {
+    // Desactivar bomba
+    HAL_GPIO_WritePin(BOMBA_PORT, BOMBA_PIN, GPIO_PIN_RESET);
+    // Desactivar LED indicador
+    HAL_GPIO_WritePin(led_GPIO_Port, led_Pin, GPIO_PIN_RESET);
+    bomba_activa = 0;
+}
+
+uint8_t leer_humedad(void) {
+    // Leer el pin digital del sensor
+    // Si el pin es LOW (0), indica que hay humedad (suelo húmedo)
+    // Si el pin es HIGH (1), indica que no hay humedad (suelo seco)
+
+    if (HAL_GPIO_ReadPin(SENSOR_GPIO_Port, SENSOR_Pin) == GPIO_PIN_RESET) {
+        // Sensor detecta humedad (pin en LOW)
+        return 85; // Valor alto de humedad (85%)
+    } else {
+        // Sensor no detecta humedad (pin en HIGH)
+        return 15; // Valor bajo de humedad (15%)
+    }
+}
+
+void actualizar_estado(void) {
+    // Verificar si el riego manual ha excedido el tiempo máximo
+    if (bomba_activa && menu_state == 2) {  // En modo manual
+        uint32_t tiempo_transcurrido = (HAL_GetTick() - tiempo_inicio_riego) / 1000;
+        if (tiempo_transcurrido >= tiempo_max_riego) {
+            desactivar_bomba();
+        }
+    }
+}
+void configurar_rtc(void) {
+    TIME nueva_config;
+
+    // Obtener hora actual como punto de partida
+    Get_Time();
+    nueva_config = time;
+
+    uint8_t paso = 0;  // 0:hora, 1:min, 2:día, 3:mes, 4:año
+    uint8_t salir = 0;
+
+    while (!salir) {
+        lcd_clear();
+
+        // Mostrar el parámetro actual que se está configurando
+        switch (paso) {
+            case 0:  // Configurando hora
+                lcd_enviar("CONFIGURAR HORA", 0, 0);
+                sprintf(buffer, "HORA: %02d A+ B-", nueva_config.hour);
+                lcd_enviar(buffer, 1, 0);
+                break;
+
+            case 1:  // Configurando minutos
+                lcd_enviar("CONFIGURAR MIN", 0, 0);
+                sprintf(buffer, "MIN: %02d  A+ B-", nueva_config.minutes);
+                lcd_enviar(buffer, 1, 0);
+                break;
+
+            case 2:  // Configurando día
+                lcd_enviar("CONFIGURAR DIA", 0, 0);
+                sprintf(buffer, "DIA: %02d  A+ B-", nueva_config.dayofmonth);
+                lcd_enviar(buffer, 1, 0);
+                break;
+
+            case 3:  // Configurando mes
+                lcd_enviar("CONFIGURAR MES", 0, 0);
+                sprintf(buffer, "MES: %02d  A+ B-", nueva_config.month);
+                lcd_enviar(buffer, 1, 0);
+                break;
+
+            case 4:  // Configurando año
+                lcd_enviar("CONFIGURAR AÑO", 0, 0);
+                sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+                lcd_enviar(buffer, 1, 0);
+                break;
+        }
+
+        // Esperar entrada del teclado
+        char k = Keypad_Get_Char();
+
+        if (k != 0) {
+            HAL_Delay(200);  // Debounce
+
+            switch (k) {
+                case 'A':  // Incrementar valor
+                    switch (paso) {
+                        case 0:  // Hora
+                            if (nueva_config.hour < 23) nueva_config.hour++;
+                            else nueva_config.hour = 0;  // Circular
+                            break;
+
+                        case 1:  // Minutos
+                            if (nueva_config.minutes < 59) nueva_config.minutes++;
+                            else nueva_config.minutes = 0;  // Circular
+                            break;
+
+                        case 2:  // Día
+                            if (nueva_config.dayofmonth < 31) nueva_config.dayofmonth++;
+                            else nueva_config.dayofmonth = 1;  // Circular
+                            break;
+
+                        case 3:  // Mes
+                            if (nueva_config.month < 12) nueva_config.month++;
+                            else nueva_config.month = 1;  // Circular
+                            break;
+
+                        case 4:  // Año
+                            if (nueva_config.year < 99) nueva_config.year++;
+                            else nueva_config.year = 0;  // Circular
+                            break;
+                    }
+                    break;
+
+                case 'B':  // Decrementar valor
+                    switch (paso) {
+                        case 0:  // Hora
+                            if (nueva_config.hour > 0) nueva_config.hour--;
+                            else nueva_config.hour = 23;  // Circular
+                            break;
+
+                        case 1:  // Minutos
+                            if (nueva_config.minutes > 0) nueva_config.minutes--;
+                            else nueva_config.minutes = 59;  // Circular
+                            break;
+
+                        case 2:  // Día
+                            if (nueva_config.dayofmonth > 1) nueva_config.dayofmonth--;
+                            else nueva_config.dayofmonth = 31;  // Circular
+                            break;
+
+                        case 3:  // Mes
+                            if (nueva_config.month > 1) nueva_config.month--;
+                            else nueva_config.month = 12;  // Circular
+                            break;
+
+                        case 4:  // Año
+                            if (nueva_config.year > 0) nueva_config.year--;
+                            else nueva_config.year = 99;  // Circular
+                            break;
+                    }
+                    break;
+
+                case '#':  // Siguiente parámetro
+                    paso++;
+                    if (paso > 4) {  // Finalizar configuración
+                        // Validar fecha (días del mes)
+                        if (nueva_config.dayofmonth > 30 && (nueva_config.month == 4 ||
+                            nueva_config.month == 6 || nueva_config.month == 9 ||
+                            nueva_config.month == 11)) {
+                            nueva_config.dayofmonth = 30;
+                        } else if (nueva_config.month == 2) {
+                            // Febrero
+                            if (nueva_config.dayofmonth > 29) {
+                                nueva_config.dayofmonth = 29;
+                            }
+
+                            // Verificar año bisiesto
+                            int anio = 2000 + nueva_config.year;
+                            if ((anio % 4 != 0) || (anio % 100 == 0 && anio % 400 != 0)) {
+                                // No es bisiesto
+                                if (nueva_config.dayofmonth > 28) {
+                                    nueva_config.dayofmonth = 28;
+                                }
+                            }
+                        }
+
+                        // Calcular día de la semana (1=Lunes, 7=Domingo)
+                        int d = nueva_config.dayofmonth;
+                        int m = nueva_config.month;
+                        int y = 2000 + nueva_config.year;
+                        if (m < 3) {
+                            m += 12;
+                            y--;
+                        }
+                        int dow = (d + 2*m + 3*(m+1)/5 + y + y/4 - y/100 + y/400) % 7 + 1;
+                        nueva_config.dayofweek = dow;
+
+                        // Guardar en RTC
+                        Set_Time(0, nueva_config.minutes, nueva_config.hour,
+                                 nueva_config.dayofweek, nueva_config.dayofmonth,
+                                 nueva_config.month, nueva_config.year);
+
+                        // Mostrar confirmación
+                        lcd_clear();
+                        lcd_enviar("FECHA Y HORA", 0, 0);
+                        lcd_enviar("CONFIGURADAS", 1, 0);
+                        HAL_Delay(1500);
+
+                        salir = 1;
+                    }
+                    break;
+
+                case '*':  // Cancelar
+                    lcd_clear();
+                    lcd_enviar("CONFIGURACION", 0, 0);
+                    lcd_enviar("CANCELADA", 1, 0);
+                    HAL_Delay(1000);
+                    salir = 1;
+                    break;
+            }
+        }
+    }
+}
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USART2_UART_Init();
+  MX_I2C1_Init();
+  /* USER CODE BEGIN 2 */
+
+  // Configurar el pin de la bomba como salida
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  GPIO_InitStruct.Pin = BOMBA_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(BOMBA_PORT, &GPIO_InitStruct);
+
+  // Asegurarse de que la bomba esté apagada al inicio
+  desactivar_bomba();
+
+  // Inicializar LCD
+  lcd_init();
+
+  // Mostrar pantalla de bienvenida
+  lcd_enviar("SISTEMA DE RIEGO", 0, 0);
+  lcd_enviar("INTELIGENTE", 1, 0);
+  HAL_Delay(2000);
+
+  // Mostrar menú principal
+  display_menu();
+
+
+//  Set_Time(0, 44, 14, 4, 10, 4, 25);  // 10 de Abril de 2025, 14:30:00, Jueves
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+
+	  // Obtener la hora actual del RTC
+	      Get_Time();
+
+	      // Verificar tiempo de riego (para apagar la bomba si se excede el tiempo)
+	      verificar_tiempo_riego();
+
+	      // Actualizar estado del sistema
+	      actualizar_estado();
+
+	      // Verificar riego programado (si estamos en modo automático)
+	      if (menu_state == 1 && riego_programado_activo && !bomba_activa) {
+	          if (time.hour == hora_riego && time.minutes == minuto_riego && time.seconds < 10) {
+	              // Iniciar riego si es la hora programada
+	              activar_bomba();
+	              modo_automatico();  // Actualizar pantalla
+	          }
+	      }
+
+	      // Leer tecla del keypad
+	      char key = Keypad_Get_Char();
+
+	      if (key != 0) {
+	          if (menu_state == 0) {  // En el menú principal
+	              switch (key) {
+	                  case '2':  // Mover cursor hacia abajo
+	                      cursor_position = (cursor_position + 1) % 3;
+	                      display_menu();
+	                      break;
+
+	                  case '8':  // Mover cursor hacia arriba
+	                      cursor_position = (cursor_position + 2) % 3;
+	                      display_menu();
+	                      break;
+
+	                  case '#':  // Seleccionar opción
+	                      menu_state = cursor_position + 1;
+	                      if (menu_state == 1) {       // Modo Automático
+	                          modo_automatico();
+	                      } else if (menu_state == 2) { // Modo Manual
+	                          modo_manual();
+	                      } else if (menu_state == 3) { // Configuración
+	                          configurar_tiempo();
+	                          menu_state = 0;
+	                          display_menu();
+	                      }else if (cursor_position == 3) {  // Nueva opción 4 para reloj
+	                          mostrar_reloj();
+	                          menu_state = 0;
+	                          display_menu();
+	                      }
+	                      break;
+
+	                  case '1':  // Acceso directo a modo automático
+	                      menu_state = 1;
+	                      modo_automatico();
+	                      break;
+
+	                  case '3':  // Acceso directo a modo manual
+	                      menu_state = 2;
+	                      modo_manual();
+	                      break;
+
+	                  case '4':  // Acceso directo a ver el reloj
+	                              mostrar_reloj();
+	                              menu_state = 0;
+	                              display_menu();
+	                              break;
+	              }
+	          }
+	          else if (menu_state == 1) {  // En modo automático
+	              if (key == '*') {  // Volver al menú principal
+	                  menu_state = 0;
+	                  display_menu();
+	              }
+	              else if (key == 'C') {  // Configurar hora de riego
+	                  configurar_hora_riego();
+	                  modo_automatico();  // Actualizar pantalla
+	              }
+	          }
+	          else if (menu_state == 2) {  // En modo manual
+	              if (key == '*') {  // Volver al menú principal
+	                  if (bomba_activa) {
+	                      desactivar_bomba();  // Apagar bomba al salir
+	                  }
+	                  menu_state = 0;
+	                  display_menu();
+	              }
+	              else if (key == '#' && !bomba_activa) {
+	                  activar_bomba();  // Iniciar riego con el tiempo configurado
+	                  modo_manual();    // Actualizar pantalla
+	              }
+	              else if (key == 'A' && !bomba_activa) {
+	                  // Aumentar tiempo de riego de 5 en 5
+	                  tiempo_max_riego += 5;
+	                  if (tiempo_max_riego > 300) tiempo_max_riego = 300;  // Máximo 5 minutos
+	                  modo_manual();    // Actualizar pantalla con el nuevo tiempo
+	              }
+	              else if (key == 'B' && !bomba_activa) {
+	                  // Disminuir tiempo de riego de 5 en 5
+	                  if (tiempo_max_riego > 5) {
+	                      tiempo_max_riego -= 5;
+	                  }
+	                  modo_manual();    // Actualizar pantalla con el nuevo tiempo
+	              }
+	              else if (key == 'C' && bomba_activa) {
+	                  // Detener el riego manualmente
+	                  desactivar_bomba();
+	                  lcd_clear();
+	                  lcd_enviar("RIEGO DETENIDO", 0, 0);
+	                  HAL_Delay(1000);
+	                  modo_manual();    // Actualizar pantalla
+	              }
+	          }
+	          HAL_Delay(200);  // Debounce para evitar múltiples detecciones
+	      }
+
+	      // Actualizar pantalla según el modo actual
+	      if (menu_state == 1) {  // En modo automático
+	          // Actualizar cada segundo
+	          static uint32_t last_update = 0;
+	          if (HAL_GetTick() - last_update >= 1000) {
+	              modo_automatico();
+	              last_update = HAL_GetTick();
+	          }
+	      }
+	      else if (menu_state == 2 && bomba_activa) {  // En modo manual con bomba activa
+	          // Actualizar cada segundo
+	          static uint32_t last_manual_update = 0;
+	          if (HAL_GetTick() - last_manual_update >= 1000) {
+	              modo_manual();
+	              last_manual_update = HAL_GetTick();
+	          }
+	      }
+
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_BYPASS;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.Timing = 0x2000090E;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Analogue filter
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Digital filter
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief USART2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART2_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART2_Init 0 */
+
+  /* USER CODE END USART2_Init 0 */
+
+  /* USER CODE BEGIN USART2_Init 1 */
+
+  /* USER CODE END USART2_Init 1 */
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 38400;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart2.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart2.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART2_Init 2 */
+
+  /* USER CODE END USART2_Init 2 */
+
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+/* USER CODE BEGIN MX_GPIO_Init_1 */
+/* USER CODE END MX_GPIO_Init_1 */
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOF_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, R4_Pin|R3_Pin|R2_Pin|R1_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(led_GPIO_Port, led_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : B1_Pin */
+  GPIO_InitStruct.Pin = B1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : C4_Pin C3_Pin C2_Pin C1_Pin */
+  GPIO_InitStruct.Pin = C4_Pin|C3_Pin|C2_Pin|C1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : R4_Pin R3_Pin R2_Pin R1_Pin */
+  GPIO_InitStruct.Pin = R4_Pin|R3_Pin|R2_Pin|R1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : led_Pin */
+  GPIO_InitStruct.Pin = led_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(led_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SENSOR_Pin */
+  GPIO_InitStruct.Pin = SENSOR_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(SENSOR_GPIO_Port, &GPIO_InitStruct);
+
+/* USER CODE BEGIN MX_GPIO_Init_2 */
+/* USER CODE END MX_GPIO_Init_2 */
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
