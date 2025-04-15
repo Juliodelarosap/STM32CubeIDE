@@ -18,8 +18,8 @@
 ../Core/Src/main.c:617:6:actualizar_estado	16	static
 ../Core/Src/main.c:626:6:configurar_rtc	72	static
 ../Core/Src/main.c:805:5:main	48	static
-../Core/Src/main.c:1008:6:SystemClock_Config	120	static
-../Core/Src/main.c:1056:13:MX_I2C1_Init	8	static
-../Core/Src/main.c:1104:13:MX_USART2_UART_Init	8	static
-../Core/Src/main.c:1139:13:MX_GPIO_Init	48	static
-../Core/Src/main.c:1201:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:1016:6:SystemClock_Config	120	static
+../Core/Src/main.c:1064:13:MX_I2C1_Init	8	static
+../Core/Src/main.c:1112:13:MX_USART2_UART_Init	8	static
+../Core/Src/main.c:1147:13:MX_GPIO_Init	48	static
+../Core/Src/main.c:1209:6:Error_Handler	4	static,ignoring_inline_asm

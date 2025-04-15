@@ -6,11 +6,15 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value="leer"/>
 		<list key="findhistory">
+			<item value="leer"/>
+			<item value="mx "/>
 			<item value="  HAL_ADC_Start_DMA(&amp;hadc1, &amp;medida, 1);"/>
 			<item value="  p1_derecha();"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

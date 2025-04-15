@@ -831,37 +831,29 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   // Configurar el pin de la bomba como salida
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
-    GPIO_InitStruct.Pin = BOMBA_PIN;
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(BOMBA_PORT, &GPIO_InitStruct);
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  GPIO_InitStruct.Pin = BOMBA_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(BOMBA_PORT, &GPIO_InitStruct);
 
-    //  bomba esté apagada al inicio
-    desactivar_bomba();
+  // Asegurarse de que la bomba esté apagada al inicio
+  desactivar_bomba();
 
-    // Inicializar LCD
-    lcd_init();
+  // Inicializar LCD
+  lcd_init();
 
-    // Mostrar pantalla de bienvenida
-    lcd_enviar("SISTEMA DE RIEGO", 0, 0);
-    lcd_enviar("INTELIGENTE", 1, 0);
-    HAL_Delay(2000);
+  // Mostrar pantalla de bienvenida
+  lcd_enviar("SISTEMA DE RIEGO", 0, 0);
+  lcd_enviar("INTELIGENTE", 1, 0);
+  HAL_Delay(2000);
+
+  // Mostrar menú principal
+  display_menu();
 
 
-    Get_Time();
-    if (time.year == 0 || time.month == 0 || time.dayofmonth == 0) {
-      // Solo inicializar la hora la primera vez
-      Set_Time(0, 34, 17, 1, 14, 4, 25);  // 14 de Abril de 2025, 17:19:00, Lunes
-      lcd_clear();
-      lcd_enviar("INICIALIZANDO", 0, 0);
-      lcd_enviar("RELOJ", 1, 0);
-      HAL_Delay(1000);
-    }
-
-    // Mostrar menú principal
-    display_menu();
+  Set_Time(0, 47, 18, 4, 10, 4, 25);  // 10 de Abril de 2025, 14:30:00, Jueves
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -893,12 +885,12 @@ int main(void)
 	      if (key != 0) {
 	          if (menu_state == 0) {  // En el menú principal
 	              switch (key) {
-	                  case '8':  // Mover cursor hacia abajo
+	                  case '2':  // Mover cursor hacia abajo
 	                      cursor_position = (cursor_position + 1) % 3;
 	                      display_menu();
 	                      break;
 
-	                  case '2':  // Mover cursor hacia arriba
+	                  case '8':  // Mover cursor hacia arriba
 	                      cursor_position = (cursor_position + 2) % 3;
 	                      display_menu();
 	                      break;
@@ -981,7 +973,7 @@ int main(void)
 	                  modo_manual();    // Actualizar pantalla
 	              }
 	          }
-	          HAL_Delay(200);  // evitar múltiples detecciones
+	          HAL_Delay(200);  // Debounce para evitar múltiples detecciones
 	      }
 
 	      // Actualizar pantalla según el modo actual

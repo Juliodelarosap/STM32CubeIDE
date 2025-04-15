@@ -838,7 +838,7 @@ int main(void)
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     HAL_GPIO_Init(BOMBA_PORT, &GPIO_InitStruct);
 
-    //  bomba esté apagada al inicio
+    // Asegurarse de que la bomba esté apagada al inicio
     desactivar_bomba();
 
     // Inicializar LCD
@@ -849,11 +849,13 @@ int main(void)
     lcd_enviar("INTELIGENTE", 1, 0);
     HAL_Delay(2000);
 
-
+    // Verificar si es la primera vez que se inicia el sistema
+    // Esta variable se puede almacenar en EEPROM o Flash en una implementación más robusta
+    // Aquí usaremos una verificación simple: si el año es 0 (valor por defecto), entonces inicializamos la hora
     Get_Time();
     if (time.year == 0 || time.month == 0 || time.dayofmonth == 0) {
       // Solo inicializar la hora la primera vez
-      Set_Time(0, 34, 17, 1, 14, 4, 25);  // 14 de Abril de 2025, 17:19:00, Lunes
+      Set_Time(0, 19, 17, 1, 14, 4, 25);  // 14 de Abril de 2025, 17:19:00, Lunes
       lcd_clear();
       lcd_enviar("INICIALIZANDO", 0, 0);
       lcd_enviar("RELOJ", 1, 0);
@@ -981,7 +983,7 @@ int main(void)
 	                  modo_manual();    // Actualizar pantalla
 	              }
 	          }
-	          HAL_Delay(200);  // evitar múltiples detecciones
+	          HAL_Delay(200);  // Debounce para evitar múltiples detecciones
 	      }
 
 	      // Actualizar pantalla según el modo actual

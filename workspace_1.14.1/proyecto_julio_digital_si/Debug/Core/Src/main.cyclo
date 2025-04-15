@@ -17,9 +17,9 @@
 ../Core/Src/main.c:603:9:leer_humedad	2
 ../Core/Src/main.c:617:6:actualizar_estado	4
 ../Core/Src/main.c:626:6:configurar_rtc	46
-../Core/Src/main.c:805:5:main	40
-../Core/Src/main.c:1008:6:SystemClock_Config	4
-../Core/Src/main.c:1056:13:MX_I2C1_Init	4
-../Core/Src/main.c:1104:13:MX_USART2_UART_Init	2
-../Core/Src/main.c:1139:13:MX_GPIO_Init	1
-../Core/Src/main.c:1201:6:Error_Handler	1
+../Core/Src/main.c:805:5:main	43
+../Core/Src/main.c:1016:6:SystemClock_Config	4
+../Core/Src/main.c:1064:13:MX_I2C1_Init	4
+../Core/Src/main.c:1112:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:1147:13:MX_GPIO_Init	1
+../Core/Src/main.c:1209:6:Error_Handler	1

@@ -149,3 +149,363 @@ Finished building: default.size.stdout
  
 Finished building: proyecto_julio_digital_si.list
  
+13:07:59 **** Incremental Build of configuration Debug for project proyecto_julio_digital_si ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'configurar_tiempo':
+../Core/Src/main.c:469:31: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  469 |     sprintf(buffer, "ACTUAL: %d seg", tiempo_max_riego);
+      |                              ~^       ~~~~~~~~~~~~~~~~
+      |                               |       |
+      |                               int     uint32_t {aka long unsigned int}
+      |                              %ld
+../Core/Src/main.c:490:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  490 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:500:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  500 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:510:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  510 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:522:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  522 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:555:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  555 |                     sprintf(buffer, "NUEVO: %d seg", tiempo_max_riego);
+      |                                             ~^       ~~~~~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c: In function 'mostrar_reloj':
+../Core/Src/main.c:222:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |                                               ^
+../Core/Src/main.c:222:9: note: 'sprintf' output between 16 and 19 bytes into a destination of size 15
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_hora_riego':
+../Core/Src/main.c:256:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |                                               ^
+../Core/Src/main.c:256:13: note: 'sprintf' output between 16 and 17 bytes into a destination of size 15
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_rtc':
+../Core/Src/main.c:667:50: warning: ' A+ B-' directive writing 6 bytes into a region of size between 4 and 5 [-Wformat-overflow=]
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                                             ~~~~~^
+../Core/Src/main.c:667:17: note: 'sprintf' output between 17 and 18 bytes into a destination of size 15
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "proyecto_julio_digital_si.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\proyecto_julio_digital_si\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="proyecto_julio_digital_si.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: proyecto_julio_digital_si.elf
+ 
+arm-none-eabi-size  proyecto_julio_digital_si.elf 
+arm-none-eabi-objdump -h -S proyecto_julio_digital_si.elf  > "proyecto_julio_digital_si.list"
+   text	   data	    bss	    dec	    hex	filename
+  26056	    108	   2180	  28344	   6eb8	proyecto_julio_digital_si.elf
+Finished building: default.size.stdout
+ 
+Finished building: proyecto_julio_digital_si.list
+ 
+17:16:51 **** Incremental Build of configuration Debug for project proyecto_julio_digital_si ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'configurar_tiempo':
+../Core/Src/main.c:469:31: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  469 |     sprintf(buffer, "ACTUAL: %d seg", tiempo_max_riego);
+      |                              ~^       ~~~~~~~~~~~~~~~~
+      |                               |       |
+      |                               int     uint32_t {aka long unsigned int}
+      |                              %ld
+../Core/Src/main.c:490:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  490 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:500:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  500 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:510:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  510 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:522:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  522 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:555:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  555 |                     sprintf(buffer, "NUEVO: %d seg", tiempo_max_riego);
+      |                                             ~^       ~~~~~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c: In function 'mostrar_reloj':
+../Core/Src/main.c:222:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |                                               ^
+../Core/Src/main.c:222:9: note: 'sprintf' output between 16 and 19 bytes into a destination of size 15
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_hora_riego':
+../Core/Src/main.c:256:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |                                               ^
+../Core/Src/main.c:256:13: note: 'sprintf' output between 16 and 17 bytes into a destination of size 15
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_rtc':
+../Core/Src/main.c:667:50: warning: ' A+ B-' directive writing 6 bytes into a region of size between 4 and 5 [-Wformat-overflow=]
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                                             ~~~~~^
+../Core/Src/main.c:667:17: note: 'sprintf' output between 17 and 18 bytes into a destination of size 15
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "proyecto_julio_digital_si.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\proyecto_julio_digital_si\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="proyecto_julio_digital_si.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: proyecto_julio_digital_si.elf
+ 
+arm-none-eabi-size  proyecto_julio_digital_si.elf 
+arm-none-eabi-objdump -h -S proyecto_julio_digital_si.elf  > "proyecto_julio_digital_si.list"
+   text	   data	    bss	    dec	    hex	filename
+  26056	    108	   2180	  28344	   6eb8	proyecto_julio_digital_si.elf
+Finished building: default.size.stdout
+ 
+Finished building: proyecto_julio_digital_si.list
+ 
+17:27:44 **** Incremental Build of configuration Debug for project proyecto_julio_digital_si ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'configurar_tiempo':
+../Core/Src/main.c:469:31: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  469 |     sprintf(buffer, "ACTUAL: %d seg", tiempo_max_riego);
+      |                              ~^       ~~~~~~~~~~~~~~~~
+      |                               |       |
+      |                               int     uint32_t {aka long unsigned int}
+      |                              %ld
+../Core/Src/main.c:490:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  490 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:500:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  500 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:510:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  510 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:522:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  522 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:555:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  555 |                     sprintf(buffer, "NUEVO: %d seg", tiempo_max_riego);
+      |                                             ~^       ~~~~~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c: In function 'mostrar_reloj':
+../Core/Src/main.c:222:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |                                               ^
+../Core/Src/main.c:222:9: note: 'sprintf' output between 16 and 19 bytes into a destination of size 15
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_hora_riego':
+../Core/Src/main.c:256:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |                                               ^
+../Core/Src/main.c:256:13: note: 'sprintf' output between 16 and 17 bytes into a destination of size 15
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_rtc':
+../Core/Src/main.c:667:50: warning: ' A+ B-' directive writing 6 bytes into a region of size between 4 and 5 [-Wformat-overflow=]
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                                             ~~~~~^
+../Core/Src/main.c:667:17: note: 'sprintf' output between 17 and 18 bytes into a destination of size 15
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "proyecto_julio_digital_si.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\proyecto_julio_digital_si\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="proyecto_julio_digital_si.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: proyecto_julio_digital_si.elf
+ 
+arm-none-eabi-size  proyecto_julio_digital_si.elf 
+arm-none-eabi-objdump -h -S proyecto_julio_digital_si.elf  > "proyecto_julio_digital_si.list"
+   text	   data	    bss	    dec	    hex	filename
+  26152	    108	   2180	  28440	   6f18	proyecto_julio_digital_si.elf
+Finished building: default.size.stdout
+ 
+Finished building: proyecto_julio_digital_si.list
+ 
+17:30:54 **** Incremental Build of configuration Debug for project proyecto_julio_digital_si ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'configurar_tiempo':
+../Core/Src/main.c:469:31: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  469 |     sprintf(buffer, "ACTUAL: %d seg", tiempo_max_riego);
+      |                              ~^       ~~~~~~~~~~~~~~~~
+      |                               |       |
+      |                               int     uint32_t {aka long unsigned int}
+      |                              %ld
+../Core/Src/main.c:490:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  490 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:500:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  500 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:510:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  510 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:522:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  522 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:555:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  555 |                     sprintf(buffer, "NUEVO: %d seg", tiempo_max_riego);
+      |                                             ~^       ~~~~~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c: In function 'mostrar_reloj':
+../Core/Src/main.c:222:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |                                               ^
+../Core/Src/main.c:222:9: note: 'sprintf' output between 16 and 19 bytes into a destination of size 15
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_hora_riego':
+../Core/Src/main.c:256:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |                                               ^
+../Core/Src/main.c:256:13: note: 'sprintf' output between 16 and 17 bytes into a destination of size 15
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_rtc':
+../Core/Src/main.c:667:50: warning: ' A+ B-' directive writing 6 bytes into a region of size between 4 and 5 [-Wformat-overflow=]
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                                             ~~~~~^
+../Core/Src/main.c:667:17: note: 'sprintf' output between 17 and 18 bytes into a destination of size 15
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "proyecto_julio_digital_si.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\proyecto_julio_digital_si\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="proyecto_julio_digital_si.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: proyecto_julio_digital_si.elf
+ 
+arm-none-eabi-size  proyecto_julio_digital_si.elf 
+arm-none-eabi-objdump -h -S proyecto_julio_digital_si.elf  > "proyecto_julio_digital_si.list"
+   text	   data	    bss	    dec	    hex	filename
+  26152	    108	   2180	  28440	   6f18	proyecto_julio_digital_si.elf
+Finished building: default.size.stdout
+ 
+Finished building: proyecto_julio_digital_si.list
+ 
+17:32:25 **** Incremental Build of configuration Debug for project proyecto_julio_digital_si ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F302x8 -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'configurar_tiempo':
+../Core/Src/main.c:469:31: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  469 |     sprintf(buffer, "ACTUAL: %d seg", tiempo_max_riego);
+      |                              ~^       ~~~~~~~~~~~~~~~~
+      |                               |       |
+      |                               int     uint32_t {aka long unsigned int}
+      |                              %ld
+../Core/Src/main.c:490:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  490 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:500:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  500 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:510:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  510 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:522:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  522 |                     sprintf(buffer, "NUEVO: %d seg", nuevo_tiempo);
+      |                                             ~^       ~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c:555:46: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+  555 |                     sprintf(buffer, "NUEVO: %d seg", tiempo_max_riego);
+      |                                             ~^       ~~~~~~~~~~~~~~~~
+      |                                              |       |
+      |                                              int     uint32_t {aka long unsigned int}
+      |                                             %ld
+../Core/Src/main.c: In function 'mostrar_reloj':
+../Core/Src/main.c:222:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |                                               ^
+../Core/Src/main.c:222:9: note: 'sprintf' output between 16 and 19 bytes into a destination of size 15
+  222 |         sprintf(buffer, "FECHA: %02d/%02d/%02d", time.dayofmonth, time.month, time.year);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_hora_riego':
+../Core/Src/main.c:256:47: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |                                               ^
+../Core/Src/main.c:256:13: note: 'sprintf' output between 16 and 17 bytes into a destination of size 15
+  256 |             sprintf(buffer, "HORA: %02d  #:SIG", nueva_hora);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'configurar_rtc':
+../Core/Src/main.c:667:50: warning: ' A+ B-' directive writing 6 bytes into a region of size between 4 and 5 [-Wformat-overflow=]
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                                             ~~~~~^
+../Core/Src/main.c:667:17: note: 'sprintf' output between 17 and 18 bytes into a destination of size 15
+  667 |                 sprintf(buffer, "AÑO: 20%02d A+ B-", nueva_config.year);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "proyecto_julio_digital_si.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\thitt\OneDrive\Documentos\GitHub\STM32CubeIDE\workspace_1.14.1\proyecto_julio_digital_si\STM32F302R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="proyecto_julio_digital_si.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: proyecto_julio_digital_si.elf
+ 
+arm-none-eabi-size  proyecto_julio_digital_si.elf 
+arm-none-eabi-objdump -h -S proyecto_julio_digital_si.elf  > "proyecto_julio_digital_si.list"
+   text	   data	    bss	    dec	    hex	filename
+  26152	    108	   2180	  28440	   6f18	proyecto_julio_digital_si.elf
+Finished building: default.size.stdout
+ 
+Finished building: proyecto_julio_digital_si.list
+ 

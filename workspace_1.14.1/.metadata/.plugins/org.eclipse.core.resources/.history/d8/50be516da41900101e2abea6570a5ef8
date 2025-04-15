@@ -981,7 +981,7 @@ int main(void)
 	                  modo_manual();    // Actualizar pantalla
 	              }
 	          }
-	          HAL_Delay(200);  // evitar múltiples detecciones
+	          HAL_Delay(200);  // Debounce para evitar múltiples detecciones
 	      }
 
 	      // Actualizar pantalla según el modo actual
